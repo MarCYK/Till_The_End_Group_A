@@ -75,7 +75,7 @@ public class Game_Logic {
             towerAttack();
         }
         else{
-            defeat();
+            //defeat();
         }
     }
     
@@ -104,7 +104,7 @@ public class Game_Logic {
             } 
         }
         else{
-            victory();
+            //victory();
         }
         
     }
