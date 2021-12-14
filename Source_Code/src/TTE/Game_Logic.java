@@ -38,7 +38,7 @@ public class Game_Logic {
         System.out.printf("Dragon's HealthPoint: %.0f\n", dragon.dragonHP);
         System.out.printf("Dragon's AttackPoint: %.0f\n", dragon.dragonAP);
         System.out.printf("Dragon's Critical Chance: %.0f%%\n", dragon.dragonCritRate);
-        System.out.printf("Dragon's ACcuracy: %.0f%%\n",dragon.dragonACC);
+        System.out.printf("Dragon's ACcuracy: %.0f%%\n\n",dragon.dragonACC);
         
         for(int i=0; i<10; i++){
             dragonAttack();
