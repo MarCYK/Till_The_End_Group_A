@@ -127,7 +127,7 @@ public class Game_Logic {
         return r <= x;
     }
     
-    //Dragon leveling upmechanism
+    //Dragon leveling up mechanism
     public static void dragonLevelUp(){
         dragon.dragonLvl++;
         dragon.dragonHP += 15;
@@ -149,7 +149,4 @@ public class Game_Logic {
     
     //To do, create a limit checker
     //Create gold upgrades
-    public static void main(String[] args) {
-        game();
-    }
 }
