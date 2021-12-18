@@ -7,16 +7,11 @@ public class Gold {
     int gold = 200;
     
     public void tax(){
-        //generate 0,1,2,3,4
-        int rand = random.nextInt(5);
-        switch(rand){
-            case 0 -> this.gold = gold + 200;
-            case 1 -> this.gold = gold + 250;
-            case 2 -> this.gold = gold + 300;
-            case 3 -> this.gold = gold + 350;
-            case 4 -> this.gold = gold + 400;
-            default -> {
-            }
-        }
+        // this will generate either 200/250/300/350/400
+        int tax = random.nextInt(8-4+1)*50 + 200;
+        
+        System.out.println("Tax received from citizens this season: " + tax);
+        
+        this.gold += tax;
     }
 }
