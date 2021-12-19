@@ -2,9 +2,9 @@ package TTE;
 import java.util.Scanner;
 public class Game_Logic {
     static Scanner sc = new Scanner(System.in);
+    static Scanner enterScanner = new Scanner(System.in);
     static Dragon dragon = new Dragon();
     static Tower tower = new Tower();
-    static Wall wall = new Wall();
     static Events events = new Events();
     static Citizen citizen = new Citizen();
     static Gold gold = new Gold();
@@ -25,14 +25,14 @@ public class Game_Logic {
         int com = sc.nextInt();
         
         while (com != 1 && com != 2 && com != 3 && com != 4) {
-            System.out.println("Option not available, please try again: ");
+            System.out.println("Option not available, please try again. ");
             System.out.print("Please enter your command: ");
             com = sc.nextInt();
         }
         
         switch(com){
             case 1 -> tower.towerUpgrade();
-            case 2 -> wall.wallUpgrade();
+            case 2 -> Wall.wallUpgrade();
             case 3 -> citizen.citizenUpgrade();
             case 4 -> fight();
         }
@@ -45,9 +45,10 @@ public class Game_Logic {
         System.out.printf("Dragon's HealthPoint: %.0f\n", dragon.dragonHP);
         System.out.printf("Dragon's AttackPoint: %.0f\n", dragon.dragonAP);
         System.out.printf("Dragon's Critical Chance: %.0f%%\n", dragon.dragonCritRate);
-        System.out.printf("Dragon's Accuracy: %.0f%%\n\n",dragon.dragonACC);
+        System.out.printf("Dragon's Accuracy: %.0f%%\n",dragon.dragonACC);
         
         for(int i=0; i<10; i++){
+            enterScanner.nextLine();
             dragonAttack();
         }
         dragonLevelUp(); // line 120
@@ -62,7 +63,7 @@ public class Game_Logic {
     //COMBAT SYSTEM ---> dragonAttack(), towerAttack() and chance()
     //dragon attack
     public static void dragonAttack(){
-        if((chance(dragon.dragonACC))||!(chance(wall.wallBlock))){ // line 114
+        if((chance(dragon.dragonACC))||!(chance(Wall.wallBlock))){ // line 114
             //attack successful     
             double dmg = dragon.dragonAP;
             
@@ -74,16 +75,16 @@ public class Game_Logic {
             else{
                 System.out.println("Dragon attacked our wall!");
             }
-            wall.wallHP -= dmg;
+            Wall.wallHP -= dmg;
             System.out.printf("Wall's HealthPoint minus %.0f\n", dmg);
-            System.out.printf("Current Wall's HealthPoint: %.0f\n\n", wall.wallHP);     
+            System.out.printf("Current Wall's HealthPoint: %.0f\n\n", Wall.wallHP);     
         }
         else{
             System.out.println("Wall successfully blocked dragon's attack");
-            System.out.printf("Current Wall's HealthPoint: %.0f\n\n", wall.wallHP);  
+            System.out.printf("Current Wall's HealthPoint: %.0f\n\n", Wall.wallHP);  
         }
         
-        if(wall.wallHP > 0){
+        if(Wall.wallHP > 0){
             towerAttack();
         }
         else{
@@ -108,11 +109,11 @@ public class Game_Logic {
                 }
                 dragon.tempHP -= dmg;
                 System.out.printf("Dragon's HealthPoint minus %.0f\n", dmg);
-                System.out.printf("Current Dragon's HealthPoint: %.0f\n\n", dragon.tempHP);     
+                System.out.printf("Current Dragon's HealthPoint: %.0f\n", dragon.tempHP);     
             }
             else{
                 System.out.println("Dragon dodged tower's attack!");
-                System.out.printf("Current Dragon's HealthPoint: %.0f\n\n", dragon.tempHP);  
+                System.out.printf("Current Dragon's HealthPoint: %.0f\n", dragon.tempHP);  
             } 
         }
         else{
@@ -147,6 +148,4 @@ public class Game_Logic {
         waitforCommand(); // line 22
     }
     
-    //To do, create a limit checker
-    //Create gold upgrades
 }
