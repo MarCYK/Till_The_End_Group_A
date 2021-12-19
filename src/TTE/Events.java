@@ -49,7 +49,7 @@ public class Events {
             case 0 -> {
                 System.out.print("Drought! Too thirsty to guard the walls. ");
                 System.out.println("Wall HP -50");
-                this.wall.wallHP -= 50;
+                Wall.wallHP -= 50;
             }
             case 1 -> {
                 System.out.print("Outing! Citizens' spirits are lifted. ");
@@ -84,12 +84,12 @@ public class Events {
             case 1 -> {
                 System.out.print("Flood! Tower walls are damaged. ");
                 System.out.println("Wall HP -50");
-                this.wall.wallHP -= 50;
+                Wall.wallHP -= 50;
             }
             case 2 -> {
                 System.out.print("Harvest! ");
                 System.out.println("Gold +100");
-                this.gold.gold += 100;
+                Gold.gold += 100;
             }
         }        
     }
@@ -102,7 +102,7 @@ public class Events {
             case 0 -> {
                 System.out.print("Blizzard! Tower walls are damaged. ");
                 System.out.println("Wall HP -50");
-                this.wall.wallHP -= 50;
+                Wall.wallHP -= 50;
             }
             case 1 -> {
                 System.out.print("Avalanche! The citizens are panicking. ");
@@ -122,7 +122,7 @@ public class Events {
             case 3 -> {
                 System.out.print("Tour Group! Extra income. ");
                 System.out.println("Gold +100");
-                this.gold.gold += 100;            
+                Gold.gold += 100;            
             }
         }
     }

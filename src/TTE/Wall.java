@@ -3,13 +3,13 @@ import java.util.Scanner;
 public class Wall {
     static Scanner sc = new Scanner(System.in);
     static Scanner enterScanner = new Scanner(System.in);
-    static Gold gold = new Gold();
     //Player initial stats
     String id = "Wall";
     static double wallHP = 100;
         //didn't use percentage cause easier to handle
     static double wallBlock = 10;      
     
+    //Wall Upgrade
     public static void wallUpgrade(){
         System.out.printf("Wall's HealthPoint: %.0f\n", wallHP);
         System.out.printf("Wall's Block: %.0f%%\n\n", wallBlock);
@@ -27,29 +27,35 @@ public class Wall {
         
         switch(com){
             case 1 -> {
-                Wall.wallHP += 75;
-                gold.gold -= 100;
-                System.out.println("Our walls have been strengthen!");
-                System.out.printf("Wall's HealthPoint: %.0f\n", wallHP);
-                System.out.printf("Gold : %d\n", gold.gold);
+                if(Gold.goldCheck(100)){
+                    Wall.wallHP += 75;
+                    Gold.gold -= 100;
+                    System.out.println("Our walls have been strengthen!");
+                    System.out.printf("Gold : %d\n", Gold.gold);
+                }
+                else{
+                    System.out.println("Our treasury is empty");
+                }
                 enterScanner.nextLine();
                 wallUpgrade();
             }
             case 2 -> {
-                if(wallBlock < 50){
-                    Wall.wallBlock += 5;
-                    gold.gold -= 100;
-                    System.out.println("Our walls have been improved!");
-                    System.out.printf("Wall's Block: %.0f\n", wallBlock);
-                    System.out.printf("Gold : %d\n", gold.gold);
-                    enterScanner.nextLine();
-                    wallUpgrade();
+                if(Gold.goldCheck(100)){
+                    if(wallBlock < 50){
+                        Wall.wallBlock += 5;
+                        Gold.gold -= 100;
+                        System.out.println("Our walls have been improved!");
+                        System.out.printf("Gold : %d\n", Gold.gold);
+                    }
+                    else{
+                        System.out.println("Our walls can no longer be improved.");
+                    }
                 }
                 else{
-                    System.out.println("Our walls can no longer be improved.");
-                    enterScanner.nextLine();
-                    wallUpgrade();
+                    System.out.println("Our treasury is empty");
                 }
+                enterScanner.nextLine();
+                wallUpgrade();
             }
             case 3 -> Game_Logic.waitforCommand();
         }

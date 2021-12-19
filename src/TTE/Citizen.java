@@ -28,7 +28,7 @@ public class Citizen {
         }
         
         if (lazy >= 100) {
-            wall.wallHP -= 100;
+            Wall.wallHP -= 100;
             lazy -= 100;
         }
         
@@ -38,7 +38,7 @@ public class Citizen {
         }
         
         if (diligent >= 100) {
-            wall.wallHP += 75;
+            Wall.wallHP += 75;
             diligent -= 100;
         }
         

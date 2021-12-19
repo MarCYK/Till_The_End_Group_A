@@ -7,7 +7,6 @@ public class Game_Logic {
     static Tower tower = new Tower();
     static Events events = new Events();
     static Citizen citizen = new Citizen();
-    static Gold gold = new Gold();
     
     public Game_Logic(){
         
@@ -141,10 +140,10 @@ public class Game_Logic {
     //Transition to the next season
     public static void nextSeason(){
         events.events();
-        gold.tax();
+        Gold.tax();
         System.out.printf("Year : %d\n", events.year);
         System.out.printf("Season : %s\n", events.seasonName);
-        System.out.printf("Gold : %d\n", gold.gold);
+        System.out.printf("Gold : %d\n", Gold.gold);
         waitforCommand(); // line 22
     }
     
