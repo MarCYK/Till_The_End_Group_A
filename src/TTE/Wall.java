@@ -19,7 +19,7 @@ public class Wall {
         System.out.print("Please enter your command: ");
         int com = sc.nextInt();
         
-        while (com != 1 && com != 2 && com != 3) {
+        while (com<1 || com>3) {
             System.out.println("Option not available, please try again. ");
             System.out.print("Please enter your command: ");
             com = sc.nextInt();
