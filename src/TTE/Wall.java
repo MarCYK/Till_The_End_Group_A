@@ -30,7 +30,7 @@ public class Wall {
                 if(Gold.goldCheck(100)){
                     Wall.wallHP += 75;
                     Gold.gold -= 100;
-                    System.out.println("Our walls have been strengthen!");
+                    System.out.println("Our walls have been strengthened!");
                     System.out.printf("Gold : %d\n", Gold.gold);
                 }
                 else{
