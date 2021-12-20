@@ -1,5 +1,10 @@
 package TTE;
+
+import java.util.Scanner;
+
 public class Citizen {
+    static Scanner sc = new Scanner(System.in);
+    static Scanner enterScanner = new Scanner(System.in);
     //Citizen initial stats
     String id = "Citizen";
     double emotional = 10;
@@ -14,6 +19,114 @@ public class Citizen {
     
     public void citizenUpgrade(){
         // this is a testing message from phang
+        System.out.println("Citizen's Emotional (Decrease Tower's AttackPoint by 1): " + emotional);
+        System.out.println("Citizen's Nervous (Decrease Tower Accuracy Percentage by 5%): " + nervous);
+        System.out.println("Citizen's Lazy (Decrease Wall's HealthPoint by 100) : " + lazy);
+        System.out.println("Citizen's Berserk (Increase Tower's AttackPoint by 1) : " + berserk);
+        System.out.println("Citizen's Diligent (Increse Wall's HealthPoint by 75) : " + diligent);
+        System.out.println("Citizen's Fearless (Increase Tower Critical Chance Percentage by 5%): " + fearless);
+        System.out.println("1. Decrease Emotional (50 Gold -> 50 Emotional Point)");
+        System.out.println("2. Decrease Nervous (50 Gold -> 50 Nervous Point)");
+        System.out.println("3. Decrease Lazy (50 Gold -> 50 Lazy Point)");
+        System.out.println("4. Decrease Berserk (50 Gold -> 50 Berserk Point)");
+        System.out.println("5. Decrease Diligent (50 Gold -> 50 Diligent Point)");
+        System.out.println("6. Decrease Fearless (50 Gold -> 50 Fearless Point)");
+        System.out.println("7. Back to menu");
+        System.out.println("Please enter your command: ");
+        
+        int cmd = sc.nextInt();
+        while (cmd<1 && cmd>7) {
+            System.out.println("Option not available, please try again. ");
+            System.out.print("Please enter your command: ");
+            cmd = sc.nextInt();            
+            }
+        switch(cmd){
+            case 1:{
+                if(Gold.goldCheck(50)){
+                    emotional -= 50;
+                    Gold.gold -= 50;
+                    System.out.println("The citizen have become less emotional.");
+                    System.out.printf("Gold : %d\n", Gold.gold);
+                }
+                else{
+                    System.out.println("Our treasury is empty");
+                }
+                enterScanner.nextLine();
+                citizenUpgrade();
+            
+            }
+            case 2:{
+                if(Gold.goldCheck(50)){
+                    nervous -= 50;
+                    Gold.gold -= 50;
+                    System.out.println("The citizen have become less nervous.");
+                    System.out.printf("Gold : %d\n", Gold.gold);
+                }
+                else{
+                    System.out.println("Our treasury is empty");
+                }
+                enterScanner.nextLine();
+                citizenUpgrade();
+            
+            }
+            case 3:{
+                if(Gold.goldCheck(50)){
+                    lazy -= 50;
+                    Gold.gold -= 50;
+                    System.out.println("The citizen have become less lazy.");
+                    System.out.printf("Gold : %d\n", Gold.gold);
+                }
+                else{
+                    System.out.println("Our treasury is empty");
+                }
+                enterScanner.nextLine();
+                citizenUpgrade();
+            
+            }
+            case 4:{
+                if(Gold.goldCheck(50)){
+                    berserk += 50;
+                    Gold.gold -= 50;
+                    System.out.println("The citizen have become more berserk!");
+                    System.out.printf("Gold : %d\n", Gold.gold);
+                }
+                else{
+                    System.out.println("Our treasury is empty");
+                }
+                enterScanner.nextLine();
+                citizenUpgrade();
+            
+            }
+            case 5:{
+                if(Gold.goldCheck(50)){
+                    diligent += 50;
+                    Gold.gold -= 50;
+                    System.out.println("The citizen have become more diligent!");
+                    System.out.printf("Gold : %d\n", Gold.gold);
+                }
+                else{
+                    System.out.println("Our treasury is empty");
+                }
+                enterScanner.nextLine();
+                citizenUpgrade();
+            
+            }
+            case 6:{
+                if(Gold.goldCheck(50)){
+                    fearless += 50;
+                    Gold.gold -= 50;
+                    System.out.println("The citizen have become more fearless!");
+                    System.out.printf("Gold : %d\n", Gold.gold);
+                }
+                else{
+                    System.out.println("Our treasury is empty");
+                }
+                enterScanner.nextLine();
+                citizenUpgrade();
+            
+            }
+            case 7: Game_Logic.waitforCommand();
+        }
     }
     
     public void citizenAffect() {
