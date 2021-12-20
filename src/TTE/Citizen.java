@@ -18,7 +18,6 @@ public class Citizen {
     Wall wall = new Wall();
     
     public void citizenUpgrade(){
-        // this is a testing message from phang
         System.out.println("Citizen's Emotional (Decrease Tower's AttackPoint by 1): " + emotional);
         System.out.println("Citizen's Nervous (Decrease Tower Accuracy Percentage by 5%): " + nervous);
         System.out.println("Citizen's Lazy (Decrease Wall's HealthPoint by 100) : " + lazy);
@@ -35,7 +34,7 @@ public class Citizen {
         System.out.println("Please enter your command: ");
         
         int cmd = sc.nextInt();
-        while (cmd<1 && cmd>7) {
+        while (cmd<1 || cmd>7) {
             System.out.println("Option not available, please try again. ");
             System.out.print("Please enter your command: ");
             cmd = sc.nextInt();            

@@ -23,7 +23,7 @@ public class Game_Logic {
         System.out.print("Please enter your command: ");
         int com = sc.nextInt();
         
-        while (com != 1 && com != 2 && com != 3 && com != 4) {
+        while (com<1 || com>4) {
             System.out.println("Option not available, please try again. ");
             System.out.print("Please enter your command: ");
             com = sc.nextInt();
