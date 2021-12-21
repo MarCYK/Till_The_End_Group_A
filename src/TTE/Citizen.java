@@ -51,6 +51,7 @@ public class Citizen {
                 else{
                     System.out.println("Our treasury is empty");
                 }
+                System.out.print("Press ENTER to continue.");
                 enterScanner.nextLine();
                 citizenUpgrade();
             
@@ -66,6 +67,7 @@ public class Citizen {
                 else{
                     System.out.println("Our treasury is empty");
                 }
+                System.out.print("Press ENTER to continue.");
                 enterScanner.nextLine();
                 citizenUpgrade();
             
@@ -81,6 +83,7 @@ public class Citizen {
                 else{
                     System.out.println("Our treasury is empty");
                 }
+                System.out.print("Press ENTER to continue.");
                 enterScanner.nextLine();
                 citizenUpgrade();
             
@@ -96,6 +99,7 @@ public class Citizen {
                 else{
                     System.out.println("Our treasury is empty");
                 }
+                System.out.print("Press ENTER to continue.");
                 enterScanner.nextLine();
                 citizenUpgrade();
             
@@ -111,6 +115,7 @@ public class Citizen {
                 else{
                     System.out.println("Our treasury is empty");
                 }
+                System.out.print("Press ENTER to continue.");
                 enterScanner.nextLine();
                 citizenUpgrade();
             
@@ -126,6 +131,7 @@ public class Citizen {
                 else{
                     System.out.println("Our treasury is empty");
                 }
+                System.out.print("Press ENTER to continue.");
                 enterScanner.nextLine();
                 citizenUpgrade();
             
