@@ -20,20 +20,26 @@ public class Game_Logic {
     //main interface
     public static void waitforCommand(){
         System.out.print("1. Tower\n2. Wall\n3. Citizen\n4. I am all ready!\n");
+        System.out.println("-".repeat(40));
         System.out.print("Please enter your command: ");
         int com = sc.nextInt();
         
         while (com<1 || com>4) {
-            System.out.println("Option not available, please try again. ");
+            System.out.println("-".repeat(40));
+            System.out.println("Option not available, please try again.");
+            System.out.println("-".repeat(40));
             System.out.print("Please enter your command: ");
-            com = sc.nextInt();
+            com = sc.nextInt();            
         }
         
         switch(com){
             case 1 -> tower.towerUpgrade();
             case 2 -> Wall.wallUpgrade();
             case 3 -> citizen.citizenUpgrade();
-            case 4 -> fight();
+            case 4 -> {
+                System.out.println("-".repeat(40));
+                fight();
+            }
         }
     }
     
@@ -45,18 +51,31 @@ public class Game_Logic {
         System.out.printf("Dragon's AttackPoint: %.0f\n", dragon.dragonAP);
         System.out.printf("Dragon's Critical Chance: %.0f%%\n", dragon.dragonCritRate);
         System.out.printf("Dragon's Accuracy: %.0f%%\n",dragon.dragonACC);
+        // Prompt message
+        System.out.println("-".repeat(40));
+        System.out.print("Press ENTER to continue.");
+        enterScanner.nextLine();
         
         for(int i=0; i<10; i++){
-            enterScanner.nextLine();
+            System.out.println("-".repeat(40));
+            System.out.println("[Round " + (i+1) + "]");
             dragonAttack();
+            System.out.println("-".repeat(40));
+            System.out.print("Press ENTER to continue.");
+            enterScanner.nextLine();            
         }
         dragonLevelUp(); // line 120
-        
+        // Complete one dragon fight message
+        System.out.println("-".repeat(40));
         System.out.println("The dragon grows weary and fled.");
         System.out.println("The citizens cheer as they survived the attack.");
-        System.out.println("They resume their daily life and prepare for the next season.\n");
-        
-        nextSeason(); // line 130
+        System.out.println("They resume their daily life and prepare for the next season.");
+        System.out.println("-".repeat(40));
+        // Prompt message
+        System.out.print("Press ENTER to continue.");
+        enterScanner.nextLine(); 
+
+        nextSeason(); // line 155
     }
     
     //COMBAT SYSTEM ---> dragonAttack(), towerAttack() and chance()
@@ -139,6 +158,7 @@ public class Game_Logic {
     
     //Transition to the next season
     public static void nextSeason(){
+        System.out.println("-".repeat(40));
         events.events();
         Gold.tax();
         System.out.printf("Year : %d\n", events.year);

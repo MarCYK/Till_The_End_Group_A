@@ -7,12 +7,12 @@ public class Citizen {
     static Scanner enterScanner = new Scanner(System.in);
     //Citizen initial stats
     String id = "Citizen";
-    double emotional = 10;
-    double nervous = 10;
-    double lazy = 10;
-    double berserk = 10;
-    double diligent = 10;
-    double fearless = 10;
+    static double emotional = 10;
+    static double nervous = 10;
+    static double lazy = 10;
+    static double berserk = 10;
+    static double diligent = 10;
+    static double fearless = 10;
     
     Tower tower = new Tower();
     Wall wall = new Wall();
@@ -27,9 +27,9 @@ public class Citizen {
         System.out.println("1. Decrease Emotional (50 Gold -> 50 Emotional Point)");
         System.out.println("2. Decrease Nervous (50 Gold -> 50 Nervous Point)");
         System.out.println("3. Decrease Lazy (50 Gold -> 50 Lazy Point)");
-        System.out.println("4. Decrease Berserk (50 Gold -> 50 Berserk Point)");
-        System.out.println("5. Decrease Diligent (50 Gold -> 50 Diligent Point)");
-        System.out.println("6. Decrease Fearless (50 Gold -> 50 Fearless Point)");
+        System.out.println("4. Increase Berserk (50 Gold -> 50 Berserk Point)");
+        System.out.println("5. Increase Diligent (50 Gold -> 50 Diligent Point)");
+        System.out.println("6. Increase Fearless (50 Gold -> 50 Fearless Point)");
         System.out.println("7. Back to menu");
         System.out.println("Please enter your command: ");
         
@@ -46,6 +46,7 @@ public class Citizen {
                     Gold.gold -= 50;
                     System.out.println("The citizen have become less emotional.");
                     System.out.printf("Gold : %d\n", Gold.gold);
+                    citizenAffect();
                 }
                 else{
                     System.out.println("Our treasury is empty");
@@ -60,6 +61,7 @@ public class Citizen {
                     Gold.gold -= 50;
                     System.out.println("The citizen have become less nervous.");
                     System.out.printf("Gold : %d\n", Gold.gold);
+                    citizenAffect();
                 }
                 else{
                     System.out.println("Our treasury is empty");
@@ -74,6 +76,7 @@ public class Citizen {
                     Gold.gold -= 50;
                     System.out.println("The citizen have become less lazy.");
                     System.out.printf("Gold : %d\n", Gold.gold);
+                    citizenAffect();
                 }
                 else{
                     System.out.println("Our treasury is empty");
@@ -88,6 +91,7 @@ public class Citizen {
                     Gold.gold -= 50;
                     System.out.println("The citizen have become more berserk!");
                     System.out.printf("Gold : %d\n", Gold.gold);
+                    citizenAffect();
                 }
                 else{
                     System.out.println("Our treasury is empty");
@@ -102,6 +106,7 @@ public class Citizen {
                     Gold.gold -= 50;
                     System.out.println("The citizen have become more diligent!");
                     System.out.printf("Gold : %d\n", Gold.gold);
+                    citizenAffect();
                 }
                 else{
                     System.out.println("Our treasury is empty");
@@ -116,6 +121,7 @@ public class Citizen {
                     Gold.gold -= 50;
                     System.out.println("The citizen have become more fearless!");
                     System.out.printf("Gold : %d\n", Gold.gold);
+                    citizenAffect();
                 }
                 else{
                     System.out.println("Our treasury is empty");
@@ -130,32 +136,44 @@ public class Citizen {
     
     public void citizenAffect() {
         if (emotional >= 100) {
+            System.out.print("The citizens are too emotional! Tower AP: " + tower.towerAP + " -> ");
             tower.towerAP--;
+            System.out.println(tower.towerAP);
             emotional -= 100;
         }
         
         if (nervous >= 100) {
+            System.out.print("The citizens are too nervous! Tower Accuracy: " + tower.towerACC + " -> ");
             tower.towerACC -= 5;
+            System.out.println(tower.towerACC);
             nervous -= 100;
         }
         
         if (lazy >= 100) {
+            System.out.print("The citizens are too lazy! Wall HP: " + Wall.wallHP + " -> ");
             Wall.wallHP -= 100;
+            System.out.println(Wall.wallHP);
             lazy -= 100;
         }
         
         if (berserk >= 100) {
+            System.out.print("The citizens are very berserk! Tower AP: " + tower.towerAP + " -> ");
             tower.towerAP++;
+            System.out.println(tower.towerAP);
             berserk -= 100;
         }
         
         if (diligent >= 100) {
+            System.out.print("The citizens are very diligent! Wall HP: " + Wall.wallHP + " -> ");
             Wall.wallHP += 75;
+            System.out.println(Wall.wallHP);
             diligent -= 100;
         }
         
         if (fearless >= 100) {
+            System.out.print("The citizens are very fearless! Tower Crit Rate: " + tower.towerCritRate + " -> ");
             tower.towerCritRate += 5;
+            System.out.println(tower.towerCritRate);
             fearless -= 100;
         }        
     }

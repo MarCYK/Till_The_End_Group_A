@@ -34,9 +34,9 @@ public class Events {
             case 2 -> {
                 System.out.print("Festival Celebration! ");
                 System.out.println("Citizen's Berserk, Diligent and Fearless +50");
-                this.citizen.berserk += 50;
-                this.citizen.diligent += 50;
-                this.citizen.fearless += 50;
+                citizen.berserk += 50;
+                citizen.diligent += 50;
+                citizen.fearless += 50;
                 citizen.citizenAffect();
             }
         }
@@ -54,17 +54,17 @@ public class Events {
             case 1 -> {
                 System.out.print("Outing! Citizens' spirits are lifted. ");
                 System.out.println("Citizen's Berserk, Diligent and Fearless +50");
-                this.citizen.berserk += 50;
-                this.citizen.diligent += 50;
-                this.citizen.fearless += 50;
+                citizen.berserk += 50;
+                citizen.diligent += 50;
+                citizen.fearless += 50;              
                 citizen.citizenAffect();                
             }
             case 2 -> {
                 System.out.print("Heatstroke! Some citizens become bedridden. ");
                 System.out.println("Citizen's Emotional, Nervous and Lazy +50");
-                this.citizen.emotional += 50;
-                this.citizen.nervous += 50;
-                this.citizen.lazy += 50;
+                citizen.emotional += 50;
+                citizen.nervous += 50;
+                citizen.lazy += 50;               
                 citizen.citizenAffect();
             }
         }
@@ -107,9 +107,9 @@ public class Events {
             case 1 -> {
                 System.out.print("Avalanche! The citizens are panicking. ");
                 System.out.println("Citizen's Emotional, Nervous and Lazy +50");
-                this.citizen.emotional += 50;
-                this.citizen.nervous += 50;
-                this.citizen.lazy += 50;
+                citizen.emotional += 50;
+                citizen.nervous += 50;
+                citizen.lazy += 50;              
                 citizen.citizenAffect();
             }
             case 2 -> {
