@@ -7,12 +7,12 @@ public class Citizen {
     static Scanner enterScanner = new Scanner(System.in);
     //Citizen initial stats
     String id = "Citizen";
-    double emotional = 10;
-    double nervous = 10;
-    double lazy = 10;
-    double berserk = 10;
-    double diligent = 10;
-    double fearless = 10;
+    static double emotional = 10;
+    static double nervous = 10;
+    static double lazy = 10;
+    static double berserk = 10;
+    static double diligent = 10;
+    static double fearless = 10;
     
     Tower tower = new Tower();
     Wall wall = new Wall();
@@ -27,9 +27,9 @@ public class Citizen {
         System.out.println("1. Decrease Emotional (50 Gold -> 50 Emotional Point)");
         System.out.println("2. Decrease Nervous (50 Gold -> 50 Nervous Point)");
         System.out.println("3. Decrease Lazy (50 Gold -> 50 Lazy Point)");
-        System.out.println("4. Decrease Berserk (50 Gold -> 50 Berserk Point)");
-        System.out.println("5. Decrease Diligent (50 Gold -> 50 Diligent Point)");
-        System.out.println("6. Decrease Fearless (50 Gold -> 50 Fearless Point)");
+        System.out.println("4. Increase Berserk (50 Gold -> 50 Berserk Point)");
+        System.out.println("5. Increase Diligent (50 Gold -> 50 Diligent Point)");
+        System.out.println("6. Increase Fearless (50 Gold -> 50 Fearless Point)");
         System.out.println("7. Back to menu");
         System.out.println("Please enter your command: ");
         
@@ -46,6 +46,7 @@ public class Citizen {
                     Gold.gold -= 50;
                     System.out.println("The citizen have become less emotional.");
                     System.out.printf("Gold : %d\n", Gold.gold);
+                    citizenAffect();
                 }
                 else{
                     System.out.println("Our treasury is empty");
@@ -60,6 +61,7 @@ public class Citizen {
                     Gold.gold -= 50;
                     System.out.println("The citizen have become less nervous.");
                     System.out.printf("Gold : %d\n", Gold.gold);
+                    citizenAffect();
                 }
                 else{
                     System.out.println("Our treasury is empty");
@@ -74,6 +76,7 @@ public class Citizen {
                     Gold.gold -= 50;
                     System.out.println("The citizen have become less lazy.");
                     System.out.printf("Gold : %d\n", Gold.gold);
+                    citizenAffect();
                 }
                 else{
                     System.out.println("Our treasury is empty");
@@ -88,6 +91,7 @@ public class Citizen {
                     Gold.gold -= 50;
                     System.out.println("The citizen have become more berserk!");
                     System.out.printf("Gold : %d\n", Gold.gold);
+                    citizenAffect();
                 }
                 else{
                     System.out.println("Our treasury is empty");
@@ -102,6 +106,7 @@ public class Citizen {
                     Gold.gold -= 50;
                     System.out.println("The citizen have become more diligent!");
                     System.out.printf("Gold : %d\n", Gold.gold);
+                    citizenAffect();
                 }
                 else{
                     System.out.println("Our treasury is empty");
@@ -116,6 +121,7 @@ public class Citizen {
                     Gold.gold -= 50;
                     System.out.println("The citizen have become more fearless!");
                     System.out.printf("Gold : %d\n", Gold.gold);
+                    citizenAffect();
                 }
                 else{
                     System.out.println("Our treasury is empty");
