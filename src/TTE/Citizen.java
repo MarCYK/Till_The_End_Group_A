@@ -13,11 +13,8 @@ public class Citizen {
     static double berserk = 10;
     static double diligent = 10;
     static double fearless = 10;
-    
-    Tower tower = new Tower();
-    Wall wall = new Wall();
-    
-    public void citizenUpgrade(){
+     
+    public static void citizenUpgrade(){
         System.out.println("-".repeat(40));
         System.out.println("Citizen's Emotional (Decrease Tower's AttackPoint by 1): " + emotional);
         System.out.println("Citizen's Nervous (Decrease Tower Accuracy Percentage by 5%): " + nervous);
@@ -164,20 +161,20 @@ public class Citizen {
         }
     }
     
-    public void citizenAffect() {
+    public static void citizenAffect() {
         if (emotional >= 100) {
-            System.out.print("The citizens are too emotional! Tower AP: " + tower.towerAP + " -> ");
-            tower.towerAP--;
-            System.out.println(tower.towerAP);
+            System.out.print("The citizens are too emotional! Tower AP: " + Tower.towerAP + " -> ");
+            Tower.towerAP--;
+            System.out.println(Tower.towerAP);
             System.out.print("The citizens calmed down after a while. Emotional " + emotional + " -> ");
             emotional -= 100;
             System.out.println(emotional);
         }
         
         if (nervous >= 100) {
-            System.out.print("The citizens are too nervous! Tower Accuracy: " + tower.towerACC + " -> ");
-            tower.towerACC -= 5;
-            System.out.println(tower.towerACC);
+            System.out.print("The citizens are too nervous! Tower Accuracy: " + Tower.towerACC + " -> ");
+            Tower.towerACC -= 5;
+            System.out.println(Tower.towerACC);
             System.out.print("The citizens calmed down after a while. Nervous " + nervous + " -> ");
             nervous -= 100;
             System.out.println(nervous);
@@ -194,9 +191,9 @@ public class Citizen {
         }
         
         if (berserk >= 100) {
-            System.out.print("The citizens are very berserk! Tower AP: " + tower.towerAP + " -> ");
-            tower.towerAP++;
-            System.out.println(tower.towerAP);
+            System.out.print("The citizens are very berserk! Tower AP: " + Tower.towerAP + " -> ");
+            Tower.towerAP++;
+            System.out.println(Tower.towerAP);
             System.out.print("The citizens calmed down after a while. Berserk " + berserk + " -> ");
             berserk -= 100;
             System.out.println(berserk);
@@ -212,9 +209,9 @@ public class Citizen {
         }
         
         if (fearless >= 100) {
-            System.out.print("The citizens are very fearless! Tower Crit Rate: " + tower.towerCritRate + " -> ");
-            tower.towerCritRate += 5;
-            System.out.println(tower.towerCritRate);
+            System.out.print("The citizens are very fearless! Tower Crit Rate: " + Tower.towerCritRate + " -> ");
+            Tower.towerCritRate += 5;
+            System.out.println(Tower.towerCritRate);
             System.out.print("The citizens calmed down after a while. Fearless " + fearless + " -> ");
             fearless -= 100;
             System.out.println(fearless);

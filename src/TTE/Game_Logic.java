@@ -3,10 +3,8 @@ import java.util.Scanner;
 public class Game_Logic {
     static Scanner sc = new Scanner(System.in);
     static Scanner enterScanner = new Scanner(System.in);
-    static Dragon dragon = new Dragon();
     static Tower tower = new Tower();
     static Events events = new Events();
-    static Citizen citizen = new Citizen();
     
     public Game_Logic(){
         
@@ -35,7 +33,7 @@ public class Game_Logic {
         switch(com){
             case 1 -> tower.towerUpgrade();
             case 2 -> Wall.wallUpgrade();
-            case 3 -> citizen.citizenUpgrade();
+            case 3 -> Citizen.citizenUpgrade();
             case 4 -> {
                 System.out.println("-".repeat(40));
                 fight();
@@ -46,11 +44,11 @@ public class Game_Logic {
     //Transition to attack sequence
     public static void fight(){
         System.out.println("A dragon performs a sudden attack to your city!");
-        System.out.printf("Dragon's Level: %.0f\n", dragon.dragonLvl);
-        System.out.printf("Dragon's HealthPoint: %.0f\n", dragon.dragonHP);
-        System.out.printf("Dragon's AttackPoint: %.0f\n", dragon.dragonAP);
-        System.out.printf("Dragon's Critical Chance: %.0f%%\n", dragon.dragonCritRate);
-        System.out.printf("Dragon's Accuracy: %.0f%%\n",dragon.dragonACC);
+        System.out.printf("Dragon's Level: %.0f\n", Dragon.dragonLvl);
+        System.out.printf("Dragon's HealthPoint: %.0f\n", Dragon.dragonHP);
+        System.out.printf("Dragon's AttackPoint: %.0f\n", Dragon.dragonAP);
+        System.out.printf("Dragon's Critical Chance: %.0f%%\n", Dragon.dragonCritRate);
+        System.out.printf("Dragon's Accuracy: %.0f%%\n",Dragon.dragonACC);
         // Prompt message
         System.out.println("-".repeat(40));
         System.out.print("Press ENTER to continue.");
@@ -64,7 +62,7 @@ public class Game_Logic {
             System.out.print("Press ENTER to continue.");
             enterScanner.nextLine();            
         }
-        dragonLevelUp(); // line 120
+        Dragon.dragonLevelUp(); // line 120
         // Complete one dragon fight message
         System.out.println("-".repeat(40));
         System.out.println("The dragon grows weary and fled.");
@@ -81,11 +79,11 @@ public class Game_Logic {
     //COMBAT SYSTEM ---> dragonAttack(), towerAttack() and chance()
     //dragon attack
     public static void dragonAttack(){
-        if((chance(dragon.dragonACC))||!(chance(Wall.wallBlock))){ // line 114
+        if((chance(Dragon.dragonACC))||!(chance(Wall.wallBlock))){ // line 114
             //attack successful     
-            double dmg = dragon.dragonAP;
+            double dmg = Dragon.dragonAP;
             
-            if(chance(dragon.dragonCritRate)){
+            if(chance(Dragon.dragonCritRate)){
                 //critical attack
                 System.out.println("Dragon attacked our wall with critical attack!");
                 dmg += (int)dmg/2;
@@ -113,12 +111,12 @@ public class Game_Logic {
     
     //tower attack
     public static void towerAttack(){
-        if(dragon.tempHP > 0){
-            if(chance(tower.towerACC)){
+        if(Dragon.tempHP > 0){
+            if(chance(Tower.towerACC)){
                 //attack successful     
-                double dmg = tower.towerAP;
+                double dmg = Tower.towerAP;
 
-                if(chance(tower.towerCritRate)){
+                if(chance(Tower.towerCritRate)){
                     //critical attack
                     System.out.println("Tower attacked dragon with critical attack!");
                     dmg += (int)dmg/2;
@@ -126,13 +124,13 @@ public class Game_Logic {
                 else{
                     System.out.println("Tower attacked dragon!");
                 }
-                dragon.tempHP -= dmg;
+                Dragon.tempHP -= dmg;
                 System.out.printf("Dragon's HealthPoint minus %.0f\n", dmg);
-                System.out.printf("Current Dragon's HealthPoint: %.0f\n", dragon.tempHP);     
+                System.out.printf("Current Dragon's HealthPoint: %.0f\n", Dragon.tempHP);     
             }
             else{
                 System.out.println("Dragon dodged tower's attack!");
-                System.out.printf("Current Dragon's HealthPoint: %.0f\n", dragon.tempHP);  
+                System.out.printf("Current Dragon's HealthPoint: %.0f\n", Dragon.tempHP);  
             } 
         }
         else{
@@ -145,17 +143,7 @@ public class Game_Logic {
     public static boolean chance(double x){
         double r = Math.random()*100;
         return r <= x;
-    }
-    
-    //Dragon leveling up mechanism
-    public static void dragonLevelUp(){
-        dragon.dragonLvl++;
-        dragon.dragonHP += 15;
-        //reset dragon HP
-        dragon.tempHP = dragon.dragonHP;
-        dragon.dragonAP++;
-        dragon.dragonCritRate += 2;
-    }
+    } 
     
     //Transition to the next season
     public static void nextSeason(){

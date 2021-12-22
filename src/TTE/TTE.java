@@ -13,7 +13,7 @@ public class TTE {
     }
     
     public static void game_loop(){
-        gl.game();
+        Game_Logic.game();
     }
     
 }

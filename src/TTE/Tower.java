@@ -8,9 +8,7 @@ public class Tower {
     static double towerACC = 80; 
     int tier = 1;
     
-    public void towerUpgrade(){
-        
-       
+    public void towerUpgrade(){               
         tier++;
         towerAP += 1;
        
