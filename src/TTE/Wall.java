@@ -39,7 +39,7 @@ public class Wall {
                     System.out.printf("%d\n", Gold.gold);
                 }
                 else{
-                    System.out.println("Our treasury is empty");
+                    System.out.println("Our treasury is empty. Upgrade failed.");
                 }
                 System.out.println("-".repeat(40));
                 System.out.print("Press ENTER to continue.");
