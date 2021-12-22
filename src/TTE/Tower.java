@@ -2,10 +2,10 @@ package TTE;
 public class Tower {
     //Tower initaial stats
     String id = "Tower";
-    double towerAP = 5;
+    static double towerAP = 5;
         //didn't use percentage cause easier to handle
-    double towerCritRate = 10;
-    double towerACC = 80; 
+    static double towerCritRate = 10;
+    static double towerACC = 80; 
     int tier = 1;
     
     public void towerUpgrade(){

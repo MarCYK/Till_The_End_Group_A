@@ -106,6 +106,7 @@ public class Game_Logic {
             towerAttack();
         }
         else{
+            System.out.println("wall has no HP and not able to counterattack");
             //defeat();
         }
     }

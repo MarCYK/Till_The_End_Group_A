@@ -31,7 +31,7 @@ public class Wall {
         switch(com){
             case 1 -> {
                 if(Gold.goldCheck(100)){
-                    System.out.print("Our walls have been strengthened! " + Wall.wallHP + " -> ");
+                    System.out.print("Our walls have been strengthened! Wall HP " + Wall.wallHP + " -> ");
                     Wall.wallHP += 75;
                     System.out.println(Wall.wallHP);
                     System.out.printf("Gold : %d -> ", Gold.gold);
@@ -49,8 +49,7 @@ public class Wall {
             case 2 -> {
                 if(Gold.goldCheck(100)){
                     if(wallBlock < 50){
-                        Gold.gold -= 100;
-                        System.out.print("Our walls have been improved! " + Wall.wallBlock + " -> ");
+                        System.out.print("Our walls have been improved! Block chance " + Wall.wallBlock + " -> ");
                         Wall.wallBlock += 5;
                         System.out.println(Wall.wallBlock);
                         System.out.printf("Gold : %d -> ", Gold.gold);
@@ -62,7 +61,7 @@ public class Wall {
                     }
                 }
                 else{
-                    System.out.println("Our treasury is empty");
+                    System.out.println("Our treasury is empty. Upgrade failed.");
                 }
                 System.out.println("-".repeat(40));
                 System.out.print("Press ENTER to continue.");                

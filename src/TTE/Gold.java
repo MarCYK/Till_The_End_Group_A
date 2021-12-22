@@ -12,8 +12,9 @@ public class Gold {
         int tax = random.nextInt(8-4+1)*50 + 200;
         
         System.out.println("Tax received from citizens this season: " + tax);
-        
-        Gold.gold += tax;
+        System.out.print("Gold " + gold + " -> ");
+        gold += tax;
+        System.out.println(gold);
     }
     
     //check if enough gold to upgrade
