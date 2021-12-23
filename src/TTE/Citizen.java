@@ -22,7 +22,7 @@ public class Citizen {
         System.out.println("Citizen's Berserk (Increase Tower's AttackPoint by 1) : " + berserk);
         System.out.println("Citizen's Diligent (Increse Wall's HealthPoint by 75) : " + diligent);
         System.out.println("Citizen's Fearless (Increase Tower Critical Chance Percentage by 5%): " + fearless);
-        System.out.println("1. Decrease Emotional (50 Gold -> 50 Emotional Point)");
+        System.out.println("\n1. Decrease Emotional (50 Gold -> 50 Emotional Point)");
         System.out.println("2. Decrease Nervous (50 Gold -> 50 Nervous Point)");
         System.out.println("3. Decrease Lazy (50 Gold -> 50 Lazy Point)");
         System.out.println("4. Increase Berserk (50 Gold -> 50 Berserk Point)");

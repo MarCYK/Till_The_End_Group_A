@@ -22,7 +22,9 @@ public class Wall {
         int com = sc.nextInt();
         
         while (com<1 || com>3) {
+            System.out.println("-".repeat(40));
             System.out.println("Option not available, please try again. ");
+            System.out.println("-".repeat(40));
             System.out.print("Please enter your command: ");
             com = sc.nextInt();
         }
