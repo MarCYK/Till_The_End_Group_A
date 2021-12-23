@@ -104,8 +104,7 @@ public class Game_Logic {
             towerAttack();
         }
         else{
-            System.out.println("wall has no HP and not able to counterattack");
-            //defeat();
+            defeat();
         }
     }
     
@@ -134,7 +133,7 @@ public class Game_Logic {
             } 
         }
         else{
-            //victory();
+            victory();
         }
         
     }
@@ -154,6 +153,20 @@ public class Game_Logic {
         System.out.printf("Season : %s\n", events.seasonName);
         System.out.printf("Gold : %d\n", Gold.gold);
         waitforCommand(); // line 22
+    }
+    
+    //Lost the game
+    public static void defeat()
+    {
+        System.out.println("You failed to protect your city!");
+        System.exit(0);
+    }
+    
+    //Won the game
+    public static void victory()
+    {
+        System.out.println("You killed the dragon! You protected your city!");
+        System.exit(0);
     }
     
 }
