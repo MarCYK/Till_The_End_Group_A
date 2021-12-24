@@ -162,7 +162,11 @@ public class Events {
         if (tempStatDrop) {
             System.out.println("The citizens have recovered from previous season.");
             System.out.print("Tower Accuracy " + Tower.towerACC + " -> ");
-            Tower.towerACC += 20;
+            if (Tower.towerACC >= 80) { // To prevent reaching past stat cap
+                Tower.towerACC = 100;
+            } else {
+                Tower.towerACC += 20;                
+            }
             System.out.println(Tower.towerACC);
             tempStatDrop = false;
         }
