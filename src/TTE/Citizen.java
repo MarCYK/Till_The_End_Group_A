@@ -209,9 +209,14 @@ public class Citizen {
         }
         
         if (fearless >= 100) {
-            System.out.print("The citizens are very fearless! Tower Crit Rate: " + Tower.towerCritRate + " -> ");
-            Tower.towerCritRate += 5;
-            System.out.println(Tower.towerCritRate);
+            System.out.print("The citizens are very fearless!");
+            if (Tower.towerCritRate + 5 > 50) {
+                System.out.println("\nTower's Critical Rate can no longer be improved.");
+            } else {
+                System.out.print(" Tower Crit Rate: " + Tower.towerCritRate + " -> ");
+                Tower.towerCritRate += 5;
+                System.out.println(Tower.towerCritRate);                
+            }
             System.out.print("The citizens calmed down after a while. Fearless " + fearless + " -> ");
             fearless -= 100;
             System.out.println(fearless);
