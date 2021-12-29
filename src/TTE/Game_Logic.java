@@ -5,6 +5,7 @@ public class Game_Logic {
     static Scanner enterScanner = new Scanner(System.in);
     static Tower tower = new Tower();
     static Events events = new Events();
+    static Save save = new Save();
     
     public Game_Logic(){
         
@@ -17,12 +18,12 @@ public class Game_Logic {
     
     //main interface
     public static void waitforCommand(){
-        System.out.print("1. Tower\n2. Wall\n3. Citizen\n4. I am all ready!\n");
+        System.out.print("1. Tower\n2. Wall\n3. Citizen\n4. I am all ready!\n5. Save your progress\n");
         System.out.println("-".repeat(40));
         System.out.print("Please enter your command: ");
         int com = sc.nextInt();
         
-        while (com<1 || com>4) {
+        while (com<1 || com>5) {
             System.out.println("-".repeat(40));
             System.out.println("Option not available, please try again.");
             System.out.println("-".repeat(40));
@@ -38,6 +39,7 @@ public class Game_Logic {
                 System.out.println("-".repeat(40));
                 fight();
             }
+            case 5 -> Save.save();
         }
     }
     

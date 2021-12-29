@@ -4,11 +4,11 @@ public class Events {
     Random random = new Random();
     Tower tower = new Tower();
     
-    int year = 1;
-    int season = 0;
-    String seasonName;
-    boolean isWinter = false;
-    boolean tempStatDrop = false;
+    static int year = 1;
+    static int season = 0;
+    static String seasonName;
+    static boolean isWinter = false;
+    static boolean tempStatDrop = false;
     
     public void Spring(){
         seasonName = "Spring";
