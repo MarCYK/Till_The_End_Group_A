@@ -13,7 +13,23 @@ public class Game_Logic {
     
     public static void game(){
         System.out.println("Welcome to Till The End - A Tower Defense Game!");
-        fight();
+        System.out.println("1. New game\n2. Load previous save");
+        System.out.println("-".repeat(40));
+        System.out.print("Please enter your command: ");
+        int com = sc.nextInt();
+        
+        while (com<1 || com>2) {
+            System.out.println("-".repeat(40));
+            System.out.println("Option not available, please try again.");
+            System.out.println("-".repeat(40));
+            System.out.print("Please enter your command: ");
+            com = sc.nextInt();            
+        }
+        
+        switch(com){
+            case 1 -> fight();
+            case 2 -> Save.load();
+        }
     }
     
     //main interface

@@ -1,39 +1,43 @@
 package TTE;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+import static TTE.Dragon.tempHP;
+import static TTE.Game_Logic.events;
 import java.util.Scanner;
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 
 public class Save {
+    static Scanner enterScanner = new Scanner(System.in);
+    
     public static void save() {
-        Scanner enterScanner = new Scanner(System.in);
         System.out.println("-".repeat(40));
         
         try {
             PrintWriter save = new PrintWriter(new FileOutputStream("TTE_save.txt"));
             
-            save.println("emotional  = " + Citizen.emotional);
-            save.println("nervous    = " + Citizen.nervous);
-            save.println("lazy       = " + Citizen.lazy);
-            save.println("berserk    = " + Citizen.berserk);
-            save.println("diligent   = " + Citizen.diligent);
-            save.println("fearless   = " + Citizen.fearless);
-            save.println("dragon lv  = " + Dragon.dragonLvl);
-            save.println("dragon hp  = " + Dragon.dragonHP);
-            save.println("dragon ap  = " + Dragon.dragonAP);
-            save.println("dragon crit= " + Dragon.dragonCritRate);
-            save.println("dragon acc = " + Dragon.dragonACC);
-            save.println("year       = " + Events.year);
-            save.println("season no. = " + Events.season);
-            save.println("season name= " + Events.seasonName);
-            save.println("isWinter   = " + Events.isWinter);
-            save.println("stat drop  = " + Events.tempStatDrop);
-            save.println("gold       = " + Gold.gold);
-            save.println("tower ap   = " + Tower.towerAP);
-            save.println("tower crit = " + Tower.towerCritRate);
-            save.println("tower acc  = " + Tower.towerACC);
-            save.println("wall hp    = " + Wall.wallHP);
-            save.println("wall block = " + Wall.wallBlock);
+            save.println(Citizen.emotional);
+            save.println(Citizen.nervous);
+            save.println(Citizen.lazy);
+            save.println(Citizen.berserk);
+            save.println(Citizen.diligent);
+            save.println(Citizen.fearless);
+            save.println(Dragon.dragonLvl);
+            save.println(Dragon.dragonHP);
+            save.println(Dragon.dragonAP);
+            save.println(Dragon.dragonCritRate);
+            save.println(Dragon.dragonACC);
+            save.println(Events.year);
+            save.println(Events.season);
+            save.println(Events.seasonName);
+            save.println(Events.isWinter);
+            save.println(Events.tempStatDrop);
+            save.println(Gold.gold);
+            save.println(Tower.towerAP);
+            save.println(Tower.towerCritRate);
+            save.println(Tower.towerACC);
+            save.println(Wall.wallHP);
+            save.println(Wall.wallBlock);
 
             save.close();
             
@@ -44,7 +48,56 @@ public class Save {
         System.out.println("Save successful.");
         System.out.println("-".repeat(40));
         System.out.print("Press ENTER to continue.");
-        enterScanner.nextLine();        
+        enterScanner.nextLine();
+        System.out.println("-".repeat(40));
         Game_Logic.waitforCommand();
+    }
+    
+    public static void load() {
+        System.out.println("-".repeat(40));
+        
+        try {
+            Scanner load = new Scanner(new FileInputStream ("TTE_save.txt"));
+            
+            Citizen.emotional = load.nextDouble();
+            Citizen.nervous = load.nextDouble();
+            Citizen.lazy = load.nextDouble();
+            Citizen.berserk = load.nextDouble();
+            Citizen.diligent = load.nextDouble();
+            Citizen.fearless = load.nextDouble();
+            Dragon.dragonLvl = load.nextDouble();
+            Dragon.dragonHP = load.nextDouble();           
+            Dragon.dragonAP = load.nextDouble();         
+            Dragon.dragonCritRate = load.nextDouble();       
+            Dragon.dragonACC = load.nextDouble();
+            Events.year = load.nextInt();
+            Events.season = load.nextInt();
+            load.nextLine(); // This is to ensure the code is reading the next line in the save file
+            Events.seasonName = load.nextLine();
+            Events.isWinter = load.nextBoolean();
+            Events.tempStatDrop = load.nextBoolean();
+            Gold.gold = load.nextInt();
+            Tower.towerAP = load.nextDouble();
+            Tower.towerCritRate = load.nextDouble();
+            Tower.towerACC = load.nextDouble();
+            Wall.wallHP = load.nextDouble();
+            Wall.wallBlock = load.nextDouble();
+
+            load.close();
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("File Error");
+        }
+        
+        tempHP = Dragon.dragonHP;
+        System.out.println("Load successful.");
+        System.out.println("-".repeat(40));
+        System.out.print("Press ENTER to continue.");
+        enterScanner.nextLine();
+        System.out.println("-".repeat(40));
+        System.out.printf("Year : %d\n", events.year);
+        System.out.printf("Season : %s\n", events.seasonName);
+        System.out.printf("Gold : %d\n", Gold.gold);        
+        Game_Logic.waitforCommand();        
     }
 }
