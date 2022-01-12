@@ -24,18 +24,18 @@ public class Save {
             save.println(Citizen.fearless);
             save.println(Dragon.dragonLvl);
             save.println(Dragon.dragonHP);
-            save.println(Dragon.dragonAP);
-            save.println(Dragon.dragonCritRate);
-            save.println(Dragon.dragonACC);
+            save.println(Dragon.AP);
+            save.println(Dragon.CritRate);
+            save.println(Dragon.Acc);
             save.println(Events.year);
             save.println(Events.season);
             save.println(Events.seasonName);
             save.println(Events.isWinter);
             save.println(Events.tempStatDrop);
             save.println(Gold.gold);
-            save.println(Tower.towerAP);
-            save.println(Tower.towerCritRate);
-            save.println(Tower.towerACC);
+            save.println(Tower.AP);
+            save.println(Tower.CritRate);
+            save.println(Tower.Acc);
             save.println(Wall.wallHP);
             save.println(Wall.wallBlock);
 
@@ -67,9 +67,9 @@ public class Save {
             Citizen.fearless = load.nextDouble();
             Dragon.dragonLvl = load.nextDouble();
             Dragon.dragonHP = load.nextDouble();           
-            Dragon.dragonAP = load.nextDouble();         
-            Dragon.dragonCritRate = load.nextDouble();       
-            Dragon.dragonACC = load.nextDouble();
+            Dragon.AP = load.nextDouble();         
+            Dragon.CritRate = load.nextDouble();       
+            Dragon.Acc = load.nextDouble();
             Events.year = load.nextInt();
             Events.season = load.nextInt();
             load.nextLine(); // This is to ensure the code is reading the next line in the save file
@@ -77,9 +77,9 @@ public class Save {
             Events.isWinter = load.nextBoolean();
             Events.tempStatDrop = load.nextBoolean();
             Gold.gold = load.nextInt();
-            Tower.towerAP = load.nextDouble();
-            Tower.towerCritRate = load.nextDouble();
-            Tower.towerACC = load.nextDouble();
+            Tower.AP = load.nextDouble();
+            Tower.CritRate = load.nextDouble();
+            Tower.Acc = load.nextDouble();
             Wall.wallHP = load.nextDouble();
             Wall.wallBlock = load.nextDouble();
 

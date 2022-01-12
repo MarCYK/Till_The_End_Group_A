@@ -1,11 +1,10 @@
-/*
+
 package TTE;
-public class SameBehavior {
-    double AP;
-    double CritRate;
-    double ACC;
+abstract class SameBehavior {
+    protected static double ap,critRate,ACC;
+    abstract public void Upgrade();
 }
-*/
+
 
 
 //this is a test

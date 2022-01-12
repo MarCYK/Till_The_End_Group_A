@@ -1,23 +1,35 @@
 package TTE;
-public class Dragon {
+public class Dragon extends SameBehavior{
     //Dragon initial stats
     String id = "Dragon";
-    static double dragonLvl = 1;
-    static double dragonHP = 100;
-    static double dragonAP = 7;
+    static double dragonLvl;
+    static double dragonHP;
+    static double tempHP;
+    static double AP;
+    static double CritRate;
+    static double Acc;
+    public Dragon()
+    {
         //didn't use percentage cause easier to handle
-    static double dragonCritRate = 20;
-    static double dragonACC = 80;  
-    static double tempHP = dragonHP;
+        ap=7;
+        critRate=20;
+        ACC=80;
+        dragonLvl=1;
+        dragonHP=100;
+        tempHP=dragonHP;
+        AP=ap;
+        CritRate=critRate;
+        Acc=ACC;
+    }
     
         //Dragon leveling up mechanism
-    public static void dragonLevelUp(){
+    public void Upgrade(){
         dragonLvl++;
         dragonHP += 15;
         //reset dragon HP
-        tempHP = Dragon.dragonHP;
-        dragonAP++;
-        dragonCritRate += 2;
+        tempHP = dragonHP;
+        AP++;
+        CritRate += 2;
     }
     
 }

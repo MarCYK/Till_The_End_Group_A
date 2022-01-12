@@ -4,6 +4,7 @@ public class Game_Logic {
     static Scanner sc = new Scanner(System.in);
     static Scanner enterScanner = new Scanner(System.in);
     static Tower tower = new Tower();
+    static Dragon dragon = new Dragon();
     static Events events = new Events();
     static Save save = new Save();
     
@@ -48,7 +49,7 @@ public class Game_Logic {
         }
         
         switch(com){
-            case 1 -> tower.towerUpgrade();
+            case 1 -> tower.Upgrade();
             case 2 -> Wall.wallUpgrade();
             case 3 -> Citizen.citizenUpgrade();
             case 4 -> {
@@ -64,9 +65,9 @@ public class Game_Logic {
         System.out.println("A dragon performs a sudden attack to your city!");
         System.out.printf("Dragon's Level: %.0f\n", Dragon.dragonLvl);
         System.out.printf("Dragon's HealthPoint: %.0f\n", Dragon.dragonHP);
-        System.out.printf("Dragon's AttackPoint: %.0f\n", Dragon.dragonAP);
-        System.out.printf("Dragon's Critical Chance: %.0f%%\n", Dragon.dragonCritRate);
-        System.out.printf("Dragon's Accuracy: %.0f%%\n",Dragon.dragonACC);
+        System.out.printf("Dragon's AttackPoint: %.0f\n", Dragon.AP);
+        System.out.printf("Dragon's Critical Chance: %.0f%%\n", Dragon.CritRate);
+        System.out.printf("Dragon's Accuracy: %.0f%%\n",Dragon.Acc);
         // Prompt message
         System.out.println("-".repeat(40));
         System.out.print("Press ENTER to continue.");
@@ -80,7 +81,7 @@ public class Game_Logic {
             System.out.print("Press ENTER to continue.");
             enterScanner.nextLine();            
         }
-        Dragon.dragonLevelUp(); // line 120
+        dragon.Upgrade(); // line 120
         // Complete one dragon fight message
         System.out.println("-".repeat(40));
         System.out.println("The dragon grows weary and fled.");
@@ -97,11 +98,11 @@ public class Game_Logic {
     //COMBAT SYSTEM ---> dragonAttack(), towerAttack() and chance()
     //dragon attack
     public static void dragonAttack(){
-        if((chance(Dragon.dragonACC))||!(chance(Wall.wallBlock))){ // line 114
+        if((chance(Dragon.Acc))||!(chance(Wall.wallBlock))){ // line 114
             //attack successful     
-            double dmg = Dragon.dragonAP;
+            double dmg = Dragon.AP;
             
-            if(chance(Dragon.dragonCritRate)){
+            if(chance(Dragon.CritRate)){
                 //critical attack
                 System.out.println("Dragon attacked our wall with critical attack!");
                 dmg += (int)dmg/2;
@@ -129,11 +130,11 @@ public class Game_Logic {
     //tower attack
     public static void towerAttack(){
         if(Dragon.tempHP > 0){
-            if(chance(Tower.towerACC)){
+            if(chance(Tower.Acc)){
                 //attack successful     
-                double dmg = Tower.towerAP;
+                double dmg = Tower.AP;
 
-                if(chance(Tower.towerCritRate)){
+                if(chance(Tower.CritRate)){
                     //critical attack
                     System.out.println("Tower attacked dragon with critical attack!");
                     dmg += (int)dmg/2;

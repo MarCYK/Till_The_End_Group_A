@@ -163,18 +163,18 @@ public class Citizen {
     
     public static void citizenAffect() {
         if (emotional >= 100) {
-            System.out.print("The citizens are too emotional! Tower AP: " + Tower.towerAP + " -> ");
-            Tower.towerAP--;
-            System.out.println(Tower.towerAP);
+            System.out.print("The citizens are too emotional! Tower AP: " + Tower.AP + " -> ");
+            Tower.AP--;
+            System.out.println(Tower.AP);
             System.out.print("The citizens calmed down after a while. Emotional " + emotional + " -> ");
             emotional -= 100;
             System.out.println(emotional);
         }
         
         if (nervous >= 100) {
-            System.out.print("The citizens are too nervous! Tower Accuracy: " + Tower.towerACC + " -> ");
-            Tower.towerACC -= 5;
-            System.out.println(Tower.towerACC);
+            System.out.print("The citizens are too nervous! Tower Accuracy: " + Tower.Acc + " -> ");
+            Tower.Acc -= 5;
+            System.out.println(Tower.Acc);
             System.out.print("The citizens calmed down after a while. Nervous " + nervous + " -> ");
             nervous -= 100;
             System.out.println(nervous);
@@ -191,9 +191,9 @@ public class Citizen {
         }
         
         if (berserk >= 100) {
-            System.out.print("The citizens are very berserk! Tower AP: " + Tower.towerAP + " -> ");
-            Tower.towerAP++;
-            System.out.println(Tower.towerAP);
+            System.out.print("The citizens are very berserk! Tower AP: " + Tower.AP + " -> ");
+            Tower.AP++;
+            System.out.println(Tower.AP);
             System.out.print("The citizens calmed down after a while. Berserk " + berserk + " -> ");
             berserk -= 100;
             System.out.println(berserk);
@@ -210,12 +210,12 @@ public class Citizen {
         
         if (fearless >= 100) {
             System.out.print("The citizens are very fearless!");
-            if (Tower.towerCritRate + 5 > 50) {
+            if (Tower.CritRate + 5 > 50) {
                 System.out.println("\nTower's Critical Rate can no longer be improved.");
             } else {
-                System.out.print(" Tower Crit Rate: " + Tower.towerCritRate + " -> ");
-                Tower.towerCritRate += 5;
-                System.out.println(Tower.towerCritRate);                
+                System.out.print(" Tower Crit Rate: " + Tower.CritRate + " -> ");
+                Tower.CritRate += 5;
+                System.out.println(Tower.CritRate);                
             }
             System.out.print("The citizens calmed down after a while. Fearless " + fearless + " -> ");
             fearless -= 100;

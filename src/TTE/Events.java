@@ -2,13 +2,12 @@ package TTE;
 import java.util.Random;
 public class Events {
     Random random = new Random();
-    Tower tower = new Tower();
-    
     static int year = 1;
     static int season = 0;
     static String seasonName;
     static boolean isWinter = false;
     static boolean tempStatDrop = false;
+    
     
     public void Spring(){
         seasonName = "Spring";
@@ -18,9 +17,9 @@ public class Events {
             //reinforcement; towerAP +1
             case 0 -> {
                 System.out.println("Reinforcements have arrived! Tower's AttackPoint +1");
-                System.out.print("Tower AP " + Tower.towerAP + " -> ");
-                Tower.towerAP++;
-                System.out.println(Tower.towerAP);
+                System.out.print("Tower AP " + Tower.AP + " -> ");
+                Tower.AP++;
+                System.out.println(Tower.AP);
             }
             //Visitors; gold +100
             case 1 -> {
@@ -93,9 +92,9 @@ public class Events {
                 System.out.print("Rainy! Vision reduced. ");
                 System.out.println("Tower Accuracy -20%(This season only)");
                 // apply seasonal debuff
-                System.out.print("Tower Accuracy " + Tower.towerACC + " -> ");
-                Tower.towerACC -= 20;
-                System.out.println(Tower.towerACC);
+                System.out.print("Tower Accuracy " + Tower.Acc + " -> ");
+                Tower.Acc -= 20;
+                System.out.println(Tower.Acc);
                 tempStatDrop = true;
             }
             case 1 -> {
@@ -141,9 +140,9 @@ public class Events {
                 System.out.print("Hunger! The citizens can't think straight. ");
                 System.out.println("Tower Accuracy -20%(This season only)");
                 // apply seasonal debuff
-                System.out.print("Tower Accuracy " + Tower.towerACC + " -> ");
-                Tower.towerACC -= 20;
-                System.out.println(Tower.towerACC);
+                System.out.print("Tower Accuracy " + Tower.Acc + " -> ");
+                Tower.Acc -= 20;
+                System.out.println(Tower.Acc);
                 tempStatDrop = true;
             }
             case 3 -> {
@@ -161,13 +160,13 @@ public class Events {
         // remove seasonal debuff (line 80)
         if (tempStatDrop) {
             System.out.println("The citizens have recovered from previous season.");
-            System.out.print("Tower Accuracy " + Tower.towerACC + " -> ");
-            if (Tower.towerACC >= 80) { // To prevent reaching past stat cap
-                Tower.towerACC = 100;
+            System.out.print("Tower Accuracy " + Tower.Acc + " -> ");
+            if (Tower.Acc >= 80) { // To prevent reaching past stat cap
+                Tower.Acc = 100;
             } else {
-                Tower.towerACC += 20;                
+                Tower.Acc += 20;                
             }
-            System.out.println(Tower.towerACC);
+            System.out.println(Tower.Acc);
             tempStatDrop = false;
         }
         // move on to next year if past winter season
