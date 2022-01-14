@@ -27,6 +27,8 @@ public class Game_Logic {
             com = sc.nextInt();            
         }
         
+        System.out.println("-".repeat(40));
+        
         switch(com){
             case 1 -> fight();
             case 2 -> Save.load();

@@ -54,8 +54,6 @@ public class Save {
     }
     
     public static void load() {
-        System.out.println("-".repeat(40));
-        
         try {
             Scanner load = new Scanner(new FileInputStream ("TTE_save.txt"));
             
