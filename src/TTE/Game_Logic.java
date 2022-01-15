@@ -10,14 +10,23 @@ public class Game_Logic {
     static Dragon dragon = new Dragon();
     static Events events = new Events();
     static Save save = new Save();
-    static Font Determined;
+    static Font Determined20;
+    static Font Determined24;
     
     public Game_Logic(){
         //import custom font
         try{
-            Determined = Font.createFont(Font.TRUETYPE_FONT, new File("DeterminationSansWebRegular-369X.ttf")).deriveFont(20f);
+            Determined20 = Font.createFont(Font.TRUETYPE_FONT, new File("DeterminationSansWebRegular-369X.ttf")).deriveFont(20f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Determined);
+            ge.registerFont(Determined20);
+        }catch(IOException | FontFormatException e){
+            
+        }
+        
+        try{
+            Determined24 = Font.createFont(Font.TRUETYPE_FONT, new File("DeterminationSansWebRegular-369X.ttf")).deriveFont(24f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Determined24);
         }catch(IOException | FontFormatException e){
             
         }
@@ -28,7 +37,7 @@ public class Game_Logic {
         ImageIcon TitlePNG = new ImageIcon("Front_page.png");
         JLabel icon = new JLabel(TitlePNG);
         JLabel text = new JLabel(" ".repeat(30)+ "Welcome to Till The End - A Tower Defense Game!");
-        text.setFont(Determined);
+        text.setFont(Determined20);
         JPanel panel = new JPanel();
         panel.setBackground(new Color(219, 233, 240));
         panel.setLayout(new BorderLayout());
@@ -51,7 +60,7 @@ public class Game_Logic {
                     System.out.println("Option not available, please try again.");
                     System.out.println("-".repeat(40));
                     System.out.print("Please enter your command: ");
-                    com = sc.nextInt();            
+                    com = sc.nextInt();
                 }
 
                 switch(com){
@@ -106,12 +115,31 @@ public class Game_Logic {
     
     //Transition to attack sequence
     public static void fight(){
-        System.out.println("A dragon performs a sudden attack to your city!");
+        //create Fight Popup
+        ImageIcon DragonPNG = new ImageIcon("DragonAttack2.gif");
+        JLabel icon = new JLabel(DragonPNG);
+        JLabel text = new JLabel("<html>" + "A dragon performs a sudden attack to your city!"
+                + "<br> Dragon's Level: " + Dragon.dragonLvl
+                + "<br> Dragon's HealthPoint: " + Dragon.dragonHP 
+                + "<br> Dragon's AttackPoint: " + Dragon.AP 
+                + "<br> Dragon's Critical Chance: " + Dragon.CritRate 
+                + "%<br> Dragon's Accuracy: " + Dragon.Acc + "%</html>");
+        text.setFont(Determined24);
+        text.setForeground(Color.WHITE);
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.BLACK);
+        panel.setLayout(new BorderLayout());
+        panel.add(icon, BorderLayout.CENTER);
+        panel.add(text, BorderLayout.SOUTH);
+        JOptionPane.showMessageDialog(null, panel, "Fight Screen", JOptionPane.PLAIN_MESSAGE);
+        
+        /*System.out.println("A dragon performs a sudden attack to your city!");
         System.out.printf("Dragon's Level: %.0f\n", Dragon.dragonLvl);
         System.out.printf("Dragon's HealthPoint: %.0f\n", Dragon.dragonHP);
         System.out.printf("Dragon's AttackPoint: %.0f\n", Dragon.AP);
         System.out.printf("Dragon's Critical Chance: %.0f%%\n", Dragon.CritRate);
-        System.out.printf("Dragon's Accuracy: %.0f%%\n",Dragon.Acc);
+        System.out.printf("Dragon's Accuracy: %.0f%%\n",Dragon.Acc);*/
+        
         // Prompt message
         System.out.println("-".repeat(40));
         System.out.print("Press ENTER to continue.");
@@ -127,15 +155,28 @@ public class Game_Logic {
         }
         dragon.Upgrade(); // line 120
         // Complete one dragon fight message
-        System.out.println("-".repeat(40));
+        //create Survival PopUp
+        ImageIcon Survival = new ImageIcon("Survival.gif");
+        JLabel iconSurvive = new JLabel(Survival);
+        JLabel textSurvive = new JLabel("<html>" + " The dragon grows weary and fled." 
+                + "<br> The citizens cheer as they survived the attack." 
+                + "<br> They resume their daily life and prepare for the next season.");
+        textSurvive.setFont(Determined20);
+        textSurvive.setForeground(Color.WHITE);
+        JPanel panel2 = new JPanel();
+        panel2.setBackground(Color.BLACK);
+        panel2.setLayout(new BorderLayout());
+        panel2.add(iconSurvive, BorderLayout.CENTER);
+        panel2.add(textSurvive, BorderLayout.SOUTH);
+        JOptionPane.showMessageDialog(null, panel2, "Survival Screen", JOptionPane.PLAIN_MESSAGE);
+        
+        /*System.out.println("-".repeat(40));
         System.out.println("The dragon grows weary and fled.");
         System.out.println("The citizens cheer as they survived the attack.");
         System.out.println("They resume their daily life and prepare for the next season.");
-        System.out.println("-".repeat(40));
-        // Prompt message
-        System.out.print("Press ENTER to continue.");
+        System.out.println("-".repeat(40));*/
+        
         enterScanner.nextLine(); 
-
         nextSeason(); // line 155
     }
     
@@ -212,8 +253,8 @@ public class Game_Logic {
         System.out.println("-".repeat(40));
         events.events();
         Gold.tax();
-        System.out.printf("Year : %d\n", events.year);
-        System.out.printf("Season : %s\n", events.seasonName);
+        System.out.printf("Year : %d\n", Events.year);
+        System.out.printf("Season : %s\n", Events.seasonName);
         System.out.printf("Gold : %d\n", Gold.gold);
         waitforCommand(); // line 22
     }
