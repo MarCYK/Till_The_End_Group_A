@@ -1,5 +1,8 @@
 package TTE;
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
+import javax.swing.*;
+import java.awt.*;
 public class Game_Logic {
     static Scanner sc = new Scanner(System.in);
     static Scanner enterScanner = new Scanner(System.in);
@@ -7,30 +10,60 @@ public class Game_Logic {
     static Dragon dragon = new Dragon();
     static Events events = new Events();
     static Save save = new Save();
+    static Font Determined;
     
     public Game_Logic(){
-        
+        //import custom font
+        try{
+            Determined = Font.createFont(Font.TRUETYPE_FONT, new File("DeterminationSansWebRegular-369X.ttf")).deriveFont(20f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Determined);
+        }catch(IOException | FontFormatException e){
+            
+        }
     }
     
     public static void game(){
-        System.out.println("Welcome to Till The End - A Tower Defense Game!");
+        //create Popup title
+        ImageIcon TitlePNG = new ImageIcon("Front_page.png");
+        JLabel icon = new JLabel(TitlePNG);
+        JLabel text = new JLabel(" ".repeat(30)+ "Welcome to Till The End - A Tower Defense Game!");
+        text.setFont(Determined);
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.add(icon, BorderLayout.CENTER);
+        panel.add(text, BorderLayout.SOUTH);
+        JOptionPane.showMessageDialog(null, panel, "Title Screen", JOptionPane.PLAIN_MESSAGE);
+        
         System.out.println("1. New game\n2. Load previous save");
         System.out.println("-".repeat(40));
-        System.out.print("Please enter your command: ");
-        int com = sc.nextInt();
-        
-        while (com<1 || com>2) {
-            System.out.println("-".repeat(40));
-            System.out.println("Option not available, please try again.");
-            System.out.println("-".repeat(40));
+        //catch InputMismatchException - not Int
+        boolean bError = true;
+        int com;
+        do{
             System.out.print("Please enter your command: ");
-            com = sc.nextInt();            
-        }
+            try{
+                com = sc.nextInt();
+                bError = false;
+                    
+                while (com<1 || com>2) {
+                    System.out.println("-".repeat(40));
+                    System.out.println("Option not available, please try again.");
+                    System.out.println("-".repeat(40));
+                    System.out.print("Please enter your command: ");
+                    com = sc.nextInt();            
+                }
+
+                switch(com){
+                    case 1 -> fight();
+                    case 2 -> Save.load();
+                }
+            }catch(InputMismatchException e){
+                System.out.println("Error! Please enter an Integer.\n");
+                sc.next();
+            }
+        }while(bError);  
         
-        switch(com){
-            case 1 -> fight();
-            case 2 -> Save.load();
-        }
     }
     
     //main interface
