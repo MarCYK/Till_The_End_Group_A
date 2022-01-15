@@ -1,6 +1,6 @@
 package TTE;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Citizen {
     static Scanner sc = new Scanner(System.in);
@@ -30,135 +30,145 @@ public class Citizen {
         System.out.println("6. Increase Fearless (50 Gold -> 50 Fearless Point)");
         System.out.println("7. Back to menu");
         System.out.println("-".repeat(40));
-        System.out.print("Please enter your command: ");
-        
-        int cmd = sc.nextInt();
-        while (cmd<1 || cmd>7) {
-            System.out.println("-".repeat(40));
-            System.out.println("Option not available, please try again. ");
-            System.out.println("-".repeat(40));
+        boolean bError = true;
+        int cmd;
+        do{
             System.out.print("Please enter your command: ");
-            cmd = sc.nextInt();            
-            }
-        
-        System.out.println("-".repeat(40));
-        switch(cmd){
-            case 1:{
-                if(Gold.goldCheck(50)){
-                    System.out.print("The citizen have become less emotional. Emotional " + emotional + " -> ");
-                    emotional -= 50;
-                    System.out.println(emotional);
-                    System.out.printf("Gold : %d -> ", Gold.gold);
-                    Gold.gold -= 50;
-                    System.out.printf("%d\n", Gold.gold);
-                    citizenAffect();
+            try{
+                cmd = sc.nextInt();
+                bError = false;
+                    
+                while (cmd<1 || cmd>7) {
+                    System.out.println("Option not available, please try again. ");
+                    System.out.println("-".repeat(40));
+                    System.out.print("Please enter your command: ");
+                    cmd = sc.nextInt();            
                 }
-                else{
-                    System.out.println("Our treasury is empty. Upgrade failed.");
-                }
+
                 System.out.println("-".repeat(40));
-                System.out.print("Press ENTER to continue.");
-                enterScanner.nextLine();
-                citizenUpgrade();
-            
-            }
-            case 2:{
-                if(Gold.goldCheck(50)){
-                    System.out.print("The citizen have become less nervous. Nervous " + nervous + " -> ");
-                    nervous -= 50;
-                    System.out.println(nervous);
-                    System.out.printf("Gold : %d -> ", Gold.gold);
-                    Gold.gold -= 50;
-                    System.out.printf("%d\n", Gold.gold);
-                    citizenAffect();
+                switch(cmd){
+                    case 1:{
+                        if(Gold.goldCheck(50)){
+                            System.out.print("The citizen have become less emotional. Emotional " + emotional + " -> ");
+                            emotional -= 50;
+                            System.out.println(emotional);
+                            System.out.printf("Gold : %d -> ", Gold.gold);
+                            Gold.gold -= 50;
+                            System.out.printf("%d\n", Gold.gold);
+                            citizenAffect();
+                        }
+                        else{
+                            System.out.println("Our treasury is empty. Upgrade failed.");
+                        }
+                        System.out.println("-".repeat(40));
+                        System.out.print("Press ENTER to continue.");
+                        enterScanner.nextLine();
+                        citizenUpgrade();
+
+                    }
+                    case 2:{
+                        if(Gold.goldCheck(50)){
+                            System.out.print("The citizen have become less nervous. Nervous " + nervous + " -> ");
+                            nervous -= 50;
+                            System.out.println(nervous);
+                            System.out.printf("Gold : %d -> ", Gold.gold);
+                            Gold.gold -= 50;
+                            System.out.printf("%d\n", Gold.gold);
+                            citizenAffect();
+                        }
+                        else{
+                            System.out.println("Our treasury is empty. Upgrade failed.");
+                        }
+                        System.out.println("-".repeat(40));
+                        System.out.print("Press ENTER to continue.");
+                        enterScanner.nextLine();
+                        citizenUpgrade();
+
+                    }
+                    case 3:{
+                        if(Gold.goldCheck(50)){
+                            System.out.print("The citizen have become less lazy. Lazy " + lazy + " -> ");
+                            lazy -= 50;
+                            System.out.println(lazy);
+                            System.out.printf("Gold : %d -> ", Gold.gold);
+                            Gold.gold -= 50;
+                            System.out.printf("%d\n", Gold.gold);
+                            citizenAffect();
+                        }
+                        else{
+                            System.out.println("Our treasury is empty. Upgrade failed.");
+                        }
+                        System.out.println("-".repeat(40));
+                        System.out.print("Press ENTER to continue.");
+                        enterScanner.nextLine();
+                        citizenUpgrade();
+
+                    }
+                    case 4:{
+                        if(Gold.goldCheck(50)){
+                            System.out.print("The citizen have become more berserk! Berserk " + berserk + " -> ");
+                            berserk += 50;
+                            System.out.println(berserk);
+                            System.out.printf("Gold : %d -> ", Gold.gold);
+                            Gold.gold -= 50;
+                            System.out.printf("%d\n", Gold.gold);
+                            citizenAffect();
+                        }
+                        else{
+                            System.out.println("Our treasury is empty. Upgrade failed.");
+                        }
+                        System.out.println("-".repeat(40));
+                        System.out.print("Press ENTER to continue.");
+                        enterScanner.nextLine();
+                        citizenUpgrade();
+
+                    }
+                    case 5:{
+                        if(Gold.goldCheck(50)){
+                            System.out.print("The citizen have become more diligent! Diligent " + diligent + " -> ");
+                            diligent += 50;
+                            System.out.println(diligent);
+                            System.out.printf("Gold : %d -> ", Gold.gold);
+                            Gold.gold -= 50;
+                            System.out.printf("%d\n", Gold.gold);
+                            citizenAffect();
+                        }
+                        else{
+                            System.out.println("Our treasury is empty. Upgrade failed.");
+                        }
+                        System.out.println("-".repeat(40));
+                        System.out.print("Press ENTER to continue.");
+                        enterScanner.nextLine();
+                        citizenUpgrade();
+
+                    }
+                    case 6:{
+                        if(Gold.goldCheck(50)){
+                            System.out.print("The citizen have become more fearless! Fearless " + fearless + " -> ");
+                            fearless += 50;
+                            System.out.println(fearless);
+                            System.out.printf("Gold : %d -> ", Gold.gold);
+                            Gold.gold -= 50;
+                            System.out.printf("%d\n", Gold.gold);
+                            citizenAffect();
+                        }
+                        else{
+                            System.out.println("Our treasury is empty. Upgrade failed.");
+                        }
+                        System.out.println("-".repeat(40));
+                        System.out.print("Press ENTER to continue.");
+                        enterScanner.nextLine();
+                        citizenUpgrade();
+
+                    }
+                    case 7: Game_Logic.waitforCommand();
                 }
-                else{
-                    System.out.println("Our treasury is empty. Upgrade failed.");
-                }
+            }catch(InputMismatchException e){
+                System.out.println("Error! Please enter an Integer.");
                 System.out.println("-".repeat(40));
-                System.out.print("Press ENTER to continue.");
-                enterScanner.nextLine();
-                citizenUpgrade();
-            
+                sc.next();
             }
-            case 3:{
-                if(Gold.goldCheck(50)){
-                    System.out.print("The citizen have become less lazy. Lazy " + lazy + " -> ");
-                    lazy -= 50;
-                    System.out.println(lazy);
-                    System.out.printf("Gold : %d -> ", Gold.gold);
-                    Gold.gold -= 50;
-                    System.out.printf("%d\n", Gold.gold);
-                    citizenAffect();
-                }
-                else{
-                    System.out.println("Our treasury is empty. Upgrade failed.");
-                }
-                System.out.println("-".repeat(40));
-                System.out.print("Press ENTER to continue.");
-                enterScanner.nextLine();
-                citizenUpgrade();
-            
-            }
-            case 4:{
-                if(Gold.goldCheck(50)){
-                    System.out.print("The citizen have become more berserk! Berserk " + berserk + " -> ");
-                    berserk += 50;
-                    System.out.println(berserk);
-                    System.out.printf("Gold : %d -> ", Gold.gold);
-                    Gold.gold -= 50;
-                    System.out.printf("%d\n", Gold.gold);
-                    citizenAffect();
-                }
-                else{
-                    System.out.println("Our treasury is empty. Upgrade failed.");
-                }
-                System.out.println("-".repeat(40));
-                System.out.print("Press ENTER to continue.");
-                enterScanner.nextLine();
-                citizenUpgrade();
-            
-            }
-            case 5:{
-                if(Gold.goldCheck(50)){
-                    System.out.print("The citizen have become more diligent! Diligent " + diligent + " -> ");
-                    diligent += 50;
-                    System.out.println(diligent);
-                    System.out.printf("Gold : %d -> ", Gold.gold);
-                    Gold.gold -= 50;
-                    System.out.printf("%d\n", Gold.gold);
-                    citizenAffect();
-                }
-                else{
-                    System.out.println("Our treasury is empty. Upgrade failed.");
-                }
-                System.out.println("-".repeat(40));
-                System.out.print("Press ENTER to continue.");
-                enterScanner.nextLine();
-                citizenUpgrade();
-            
-            }
-            case 6:{
-                if(Gold.goldCheck(50)){
-                    System.out.print("The citizen have become more fearless! Fearless " + fearless + " -> ");
-                    fearless += 50;
-                    System.out.println(fearless);
-                    System.out.printf("Gold : %d -> ", Gold.gold);
-                    Gold.gold -= 50;
-                    System.out.printf("%d\n", Gold.gold);
-                    citizenAffect();
-                }
-                else{
-                    System.out.println("Our treasury is empty. Upgrade failed.");
-                }
-                System.out.println("-".repeat(40));
-                System.out.print("Press ENTER to continue.");
-                enterScanner.nextLine();
-                citizenUpgrade();
-            
-            }
-            case 7: Game_Logic.waitforCommand();
-        }
+        }while(bError); 
     }
     
     public static void citizenAffect() {

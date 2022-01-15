@@ -46,7 +46,6 @@ public class Save {
         }
         
         System.out.println("Save successful.");
-        System.out.println("-".repeat(40));
         System.out.print("Press ENTER to continue.");
         enterScanner.nextLine();
         System.out.println("-".repeat(40));
@@ -91,7 +90,6 @@ public class Save {
         
         tempHP = Dragon.dragonHP;
         System.out.println("Load successful.");
-        System.out.println("-".repeat(40));
         System.out.print("Press ENTER to continue.");
         enterScanner.nextLine();
         System.out.println("-".repeat(40));

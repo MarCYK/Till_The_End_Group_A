@@ -30,6 +30,7 @@ public class Game_Logic {
         JLabel text = new JLabel(" ".repeat(30)+ "Welcome to Till The End - A Tower Defense Game!");
         text.setFont(Determined);
         JPanel panel = new JPanel();
+        panel.setBackground(new Color(219, 233, 240));
         panel.setLayout(new BorderLayout());
         panel.add(icon, BorderLayout.CENTER);
         panel.add(text, BorderLayout.SOUTH);
@@ -47,7 +48,6 @@ public class Game_Logic {
                 bError = false;
                     
                 while (com<1 || com>2) {
-                    System.out.println("-".repeat(40));
                     System.out.println("Option not available, please try again.");
                     System.out.println("-".repeat(40));
                     System.out.print("Please enter your command: ");
@@ -59,7 +59,8 @@ public class Game_Logic {
                     case 2 -> Save.load();
                 }
             }catch(InputMismatchException e){
-                System.out.println("Error! Please enter an Integer.\n");
+                System.out.println("Error! Please enter an Integer.");
+                System.out.println("-".repeat(40));
                 sc.next();
             }
         }while(bError);  
@@ -70,27 +71,37 @@ public class Game_Logic {
     public static void waitforCommand(){
         System.out.print("1. Tower\n2. Wall\n3. Citizen\n4. I am all ready!\n5. Save your progress\n");
         System.out.println("-".repeat(40));
-        System.out.print("Please enter your command: ");
-        int com = sc.nextInt();
-        
-        while (com<1 || com>5) {
-            System.out.println("-".repeat(40));
-            System.out.println("Option not available, please try again.");
-            System.out.println("-".repeat(40));
+        boolean bError = true;
+        int com;
+        do{
             System.out.print("Please enter your command: ");
-            com = sc.nextInt();            
-        }
-        
-        switch(com){
-            case 1 -> tower.Upgrade();
-            case 2 -> Wall.wallUpgrade();
-            case 3 -> Citizen.citizenUpgrade();
-            case 4 -> {
+            try{
+                com = sc.nextInt();
+                bError = false;
+                    
+                while (com<1 || com>5) {
+                    System.out.println("Option not available, please try again.");
+                    System.out.println("-".repeat(40));
+                    System.out.print("Please enter your command: ");
+                    com = sc.nextInt();            
+                }
+
+                switch(com){
+                    case 1 -> tower.Upgrade();
+                    case 2 -> Wall.wallUpgrade();
+                    case 3 -> Citizen.citizenUpgrade();
+                    case 4 -> {
+                        System.out.println("-".repeat(40));
+                        fight();
+                    }
+                    case 5 -> Save.save();
+                }
+            }catch(InputMismatchException e){
+                System.out.println("Error! Please enter an Integer.");
                 System.out.println("-".repeat(40));
-                fight();
+                sc.next();
             }
-            case 5 -> Save.save();
-        }
+        }while(bError); 
     }
     
     //Transition to attack sequence
