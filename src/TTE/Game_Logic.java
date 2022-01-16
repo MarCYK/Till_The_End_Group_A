@@ -14,6 +14,7 @@ public class Game_Logic {
     static Save save = new Save();
     static Font Determined20;
     static Font Determined24;
+    static boolean isHardMode=false;
     
     public Game_Logic(){
         //import custom font
@@ -52,6 +53,7 @@ public class Game_Logic {
         //catch InputMismatchException - not Int
         boolean bError = true;
         int com = 0;
+        int hardcom = 0;
         do{
             do{
                 System.out.print("Please enter your command: ");
@@ -65,8 +67,31 @@ public class Game_Logic {
                     }
 
                     switch(com){
-                        case 1 -> fight();
-                        case 2 -> Save.load();
+                        case 1 : 
+                            System.out.println("-".repeat(40));
+                                System.out.println("1. Normal\n2. Hard");
+                                System.out.println("-".repeat(40));
+                                do{
+                                    System.out.print("Plese select the difficulty: ");
+                                    hardcom= sc.nextInt();
+                                    if(hardcom<1 || hardcom>2)
+                                    {
+                                        System.out.println("Option not available, please try again.");
+                                        System.out.println("-".repeat(40));
+                                    }
+                                    switch(hardcom){
+                                        case 1 -> fight();
+                                        case 2 -> {
+                                            isHardMode=true;
+                                            Dragon.AP=8;
+                                            Dragon.CritRate=24;
+                                            Dragon.dragonHP=130;
+                                            fight();
+                                        }
+                                    }
+                                }while(hardcom<1 || hardcom>2);
+                                break;
+                        case 2 : Save.load();
                     }
                 }catch(InputMismatchException e){
                     System.out.println("Error! Please enter an Integer.");
