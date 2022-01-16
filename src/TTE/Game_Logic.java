@@ -95,7 +95,7 @@ public class Game_Logic {
                     }
                 }catch(InputMismatchException e){
                     System.out.println("Error! Please enter an Integer.");
-                    System.out.println("-".repeat(40));
+                    System.out.println("-".repeat(40)); 
                     sc.next();
                 }
             }while(bError);
@@ -142,6 +142,7 @@ public class Game_Logic {
     
     //Transition to attack sequence
     public static void fight(){
+        new AePlayWave("DragonRoar.wav").start();
         //create Fight Popup
         ImageIcon DragonPNG = new ImageIcon("DragonAttack2.gif");
         JLabel icon = new JLabel(DragonPNG);
@@ -217,7 +218,7 @@ public class Game_Logic {
             if(chance(Dragon.CritRate)){
                 //critical attack
                 System.out.println("Dragon attacked our wall with critical attack!");
-                new AePlayWave("Oof.wav").start();
+                new AePlayWave("DragonAttack.wav").start();
                 dmg += (int)dmg/2;
             }
             else{
@@ -306,87 +307,87 @@ public class Game_Logic {
     //new AePlayWave("file.wav").start();
     public static class AePlayWave extends Thread { 
  
-    private String filename;
- 
-    private Position curPosition;
- 
-    private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb 
- 
-    enum Position { 
-        LEFT, RIGHT, NORMAL
-    };
- 
-    public AePlayWave(String wavfile) { 
-        filename = wavfile;
-        curPosition = Position.NORMAL;
-    } 
- 
-    public AePlayWave(String wavfile, Position p) { 
-        filename = wavfile;
-        curPosition = p;
-    } 
- 
-    public void run() { 
- 
-        File soundFile = new File(filename);
-        if (!soundFile.exists()) { 
-            System.err.println("Wave file not found: " + filename);
-            return;
+        private String filename;
+
+        private Position curPosition;
+
+        private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb 
+
+        enum Position { 
+            LEFT, RIGHT, NORMAL
+        };
+
+        public AePlayWave(String wavfile) { 
+            filename = wavfile;
+            curPosition = Position.NORMAL;
         } 
- 
-        AudioInputStream audioInputStream = null;
-        try { 
-            audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-        } catch (UnsupportedAudioFileException e1) { 
-            e1.printStackTrace();
-            return;
-        } catch (IOException e1) { 
-            e1.printStackTrace();
-            return;
+
+        public AePlayWave(String wavfile, Position p) { 
+            filename = wavfile;
+            curPosition = p;
         } 
- 
-        AudioFormat format = audioInputStream.getFormat();
-        SourceDataLine auline = null;
-        DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
- 
-        try { 
-            auline = (SourceDataLine) AudioSystem.getLine(info);
-            auline.open(format);
-        } catch (LineUnavailableException e) { 
-            e.printStackTrace();
-            return;
-        } catch (Exception e) { 
-            e.printStackTrace();
-            return;
-        } 
- 
-        if (auline.isControlSupported(FloatControl.Type.PAN)) { 
-            FloatControl pan = (FloatControl) auline
-                    .getControl(FloatControl.Type.PAN);
-            if (curPosition == Position.RIGHT) 
-                pan.setValue(1.0f);
-            else if (curPosition == Position.LEFT) 
-                pan.setValue(-1.0f);
-        } 
- 
-        auline.start();
-        int nBytesRead = 0;
-        byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
- 
-        try { 
-            while (nBytesRead != -1) { 
-                nBytesRead = audioInputStream.read(abData, 0, abData.length);
-                if (nBytesRead >= 0) 
-                    auline.write(abData, 0, nBytesRead);
+
+        public void run() { 
+
+            File soundFile = new File(filename);
+            if (!soundFile.exists()) { 
+                System.err.println("Wave file not found: " + filename);
+                return;
             } 
-        } catch (IOException e) { 
-            e.printStackTrace();
-            return;
-        } finally { 
-            auline.drain();
-            auline.close();
+
+            AudioInputStream audioInputStream = null;
+            try { 
+                audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+            } catch (UnsupportedAudioFileException e1) { 
+                e1.printStackTrace();
+                return;
+            } catch (IOException e1) { 
+                e1.printStackTrace();
+                return;
+            } 
+
+            AudioFormat format = audioInputStream.getFormat();
+            SourceDataLine auline = null;
+            DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
+
+            try { 
+                auline = (SourceDataLine) AudioSystem.getLine(info);
+                auline.open(format);
+            } catch (LineUnavailableException e) { 
+                e.printStackTrace();
+                return;
+            } catch (Exception e) { 
+                e.printStackTrace();
+                return;
+            } 
+
+            if (auline.isControlSupported(FloatControl.Type.PAN)) { 
+                FloatControl pan = (FloatControl) auline
+                        .getControl(FloatControl.Type.PAN);
+                if (curPosition == Position.RIGHT) 
+                    pan.setValue(1.0f);
+                else if (curPosition == Position.LEFT) 
+                    pan.setValue(-1.0f);
+            } 
+
+            auline.start();
+            int nBytesRead = 0;
+            byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
+
+            try { 
+                while (nBytesRead != -1) { 
+                    nBytesRead = audioInputStream.read(abData, 0, abData.length);
+                    if (nBytesRead >= 0) 
+                        auline.write(abData, 0, nBytesRead);
+                } 
+            } catch (IOException e) { 
+                e.printStackTrace();
+                return;
+            } finally { 
+                auline.drain();
+                auline.close();
+            } 
+
         } 
- 
     } 
-} 
 }
