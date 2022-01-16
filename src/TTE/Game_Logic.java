@@ -3,6 +3,8 @@ import java.util.*;
 import java.io.*;
 import javax.swing.*;
 import java.awt.*;
+import javax.sound.sampled.*;
+
 public class Game_Logic {
     static Scanner sc = new Scanner(System.in);
     static Scanner enterScanner = new Scanner(System.in);
@@ -49,30 +51,30 @@ public class Game_Logic {
         System.out.println("-".repeat(40));
         //catch InputMismatchException - not Int
         boolean bError = true;
-        int com;
+        int com = 0;
         do{
-            System.out.print("Please enter your command: ");
-            try{
-                com = sc.nextInt();
-                bError = false;
-                    
-                while (com<1 || com>2) {
-                    System.out.println("Option not available, please try again.");
-                    System.out.println("-".repeat(40));
-                    System.out.print("Please enter your command: ");
+            do{
+                System.out.print("Please enter your command: ");
+                try{
                     com = sc.nextInt();
-                }
+                    bError = false;
 
-                switch(com){
-                    case 1 -> fight();
-                    case 2 -> Save.load();
+                    if(com<1 || com>2) {
+                        System.out.println("Option not available, please try again.");
+                        System.out.println("-".repeat(40));
+                    }
+
+                    switch(com){
+                        case 1 -> fight();
+                        case 2 -> Save.load();
+                    }
+                }catch(InputMismatchException e){
+                    System.out.println("Error! Please enter an Integer.");
+                    System.out.println("-".repeat(40));
+                    sc.next();
                 }
-            }catch(InputMismatchException e){
-                System.out.println("Error! Please enter an Integer.");
-                System.out.println("-".repeat(40));
-                sc.next();
-            }
-        }while(bError);  
+            }while(bError);
+        }while(com<1 || com>2);
         
     }
     
@@ -190,6 +192,7 @@ public class Game_Logic {
             if(chance(Dragon.CritRate)){
                 //critical attack
                 System.out.println("Dragon attacked our wall with critical attack!");
+                new AePlayWave("Oof.wav").start();
                 dmg += (int)dmg/2;
             }
             else{
@@ -273,4 +276,91 @@ public class Game_Logic {
         System.exit(0);
     }
     
+    //play audio
+    //new AePlayWave("file.wav").start();
+    public static class AePlayWave extends Thread { 
+ 
+    private String filename;
+ 
+    private Position curPosition;
+ 
+    private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb 
+ 
+    enum Position { 
+        LEFT, RIGHT, NORMAL
+    };
+ 
+    public AePlayWave(String wavfile) { 
+        filename = wavfile;
+        curPosition = Position.NORMAL;
+    } 
+ 
+    public AePlayWave(String wavfile, Position p) { 
+        filename = wavfile;
+        curPosition = p;
+    } 
+ 
+    public void run() { 
+ 
+        File soundFile = new File(filename);
+        if (!soundFile.exists()) { 
+            System.err.println("Wave file not found: " + filename);
+            return;
+        } 
+ 
+        AudioInputStream audioInputStream = null;
+        try { 
+            audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+        } catch (UnsupportedAudioFileException e1) { 
+            e1.printStackTrace();
+            return;
+        } catch (IOException e1) { 
+            e1.printStackTrace();
+            return;
+        } 
+ 
+        AudioFormat format = audioInputStream.getFormat();
+        SourceDataLine auline = null;
+        DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
+ 
+        try { 
+            auline = (SourceDataLine) AudioSystem.getLine(info);
+            auline.open(format);
+        } catch (LineUnavailableException e) { 
+            e.printStackTrace();
+            return;
+        } catch (Exception e) { 
+            e.printStackTrace();
+            return;
+        } 
+ 
+        if (auline.isControlSupported(FloatControl.Type.PAN)) { 
+            FloatControl pan = (FloatControl) auline
+                    .getControl(FloatControl.Type.PAN);
+            if (curPosition == Position.RIGHT) 
+                pan.setValue(1.0f);
+            else if (curPosition == Position.LEFT) 
+                pan.setValue(-1.0f);
+        } 
+ 
+        auline.start();
+        int nBytesRead = 0;
+        byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
+ 
+        try { 
+            while (nBytesRead != -1) { 
+                nBytesRead = audioInputStream.read(abData, 0, abData.length);
+                if (nBytesRead >= 0) 
+                    auline.write(abData, 0, nBytesRead);
+            } 
+        } catch (IOException e) { 
+            e.printStackTrace();
+            return;
+        } finally { 
+            auline.drain();
+            auline.close();
+        } 
+ 
+    } 
+} 
 }
