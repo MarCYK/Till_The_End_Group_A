@@ -183,10 +183,11 @@ public class Game_Logic {
             System.out.print("Press ENTER to continue.");
             enterScanner.nextLine();            
         }
+        new AePlayWave("TEUTON.wav").start();
         dragon.Upgrade(); // line 120
         // Complete one dragon fight message
         //create Survival PopUp
-        ImageIcon Survival = new ImageIcon("Survival.gif");
+        ImageIcon Survival = new ImageIcon("flagBrearer.gif");
         JLabel iconSurvive = new JLabel(Survival);
         JLabel textSurvive = new JLabel("<html>" + " The dragon grows weary and fled." 
                 + "<br> The citizens cheer as they survived the attack." 
@@ -219,8 +220,8 @@ public class Game_Logic {
             
             if(chance(Dragon.CritRate)){
                 //critical attack
-                System.out.println("Dragon attacked our wall with critical attack!");
                 new AePlayWave("DragonAttack.wav").start();
+                System.out.println("Dragon attacked our wall with critical attack!");
                 dmg += (int)dmg/2;
             }
             else{
@@ -252,8 +253,8 @@ public class Game_Logic {
 
                 if(chance(Tower.CritRate)){
                     //critical attack
-                    System.out.println("Tower attacked dragon with critical attack!");
                     new AePlayWave("sword.wav").start();
+                    System.out.println("Tower attacked dragon with critical attack!");
                     dmg += (int)dmg/2;
                 }
                 else{
@@ -294,15 +295,40 @@ public class Game_Logic {
     //Lost the game
     public static void defeat()
     {
-        System.out.println("You failed to protect your city!");
+        new AePlayWave("Defeat.wav").start();
+        ImageIcon TitlePNG = new ImageIcon("Defeated.gif");
+        JLabel icon = new JLabel(TitlePNG);
+        JLabel text = new JLabel(" ".repeat(30)+ "You failed to protect your city!");
+        text.setFont(Determined20);
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(219, 233, 240));
+        panel.setLayout(new BorderLayout());
+        panel.add(icon, BorderLayout.CENTER);
+        panel.add(text, BorderLayout.SOUTH);
+        JOptionPane.showMessageDialog(null, panel, "Defeat Screen", JOptionPane.PLAIN_MESSAGE);
+        
+        //System.out.println("You failed to protect your city!");
+        
         System.exit(0);
     }
     
     //Won the game
     public static void victory()
     {
-        new AePlayWave("victory.wav").start();
-        System.out.println("You killed the dragon! You protected your city!");
+        new AePlayWave("WON1.wav").start();
+        ImageIcon TitlePNG = new ImageIcon("Victory.png");
+        JLabel icon = new JLabel(TitlePNG);
+        JLabel text = new JLabel(" ".repeat(20)+ "You killed the dragon! You protected your city!");
+        text.setFont(Determined20);
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(219, 233, 240));
+        panel.setLayout(new BorderLayout());
+        panel.add(icon, BorderLayout.CENTER);
+        panel.add(text, BorderLayout.SOUTH);
+        JOptionPane.showMessageDialog(null, panel, "Defeat Screen", JOptionPane.PLAIN_MESSAGE);
+        
+        //System.out.println("You killed the dragon! You protected your city!");
+        
         System.exit(0);
     }
     

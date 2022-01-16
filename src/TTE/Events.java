@@ -1,5 +1,12 @@
 package TTE;
+import static TTE.Game_Logic.Determined24;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.Random;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 public class Events {
     Random random = new Random();
     static int year = 1;
@@ -16,6 +23,7 @@ public class Events {
         switch(rand){
             //reinforcement; towerAP +1
             case 0 -> {
+                new Game_Logic.AePlayWave("Rome Total War - Reinforcements Sound.wav").start();
                 System.out.println("Reinforcements have arrived! Tower's AttackPoint +1");
                 System.out.print("Tower AP " + Tower.AP + " -> ");
                 Tower.AP++;
@@ -115,9 +123,22 @@ public class Events {
     public void Winter(){
         seasonName = "Winter";
         isWinter = true;
+        
+        ImageIcon TitlePNG = new ImageIcon("winter.png");
+        JLabel icon = new JLabel(TitlePNG);
+        JLabel text = new JLabel("<html>" + "Year: " + year + "<br>Season: "+ seasonName +"</html>");
+        text.setFont(Determined24);
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(219, 233, 240));
+        panel.setLayout(new BorderLayout());
+        panel.add(icon, BorderLayout.CENTER);
+        panel.add(text, BorderLayout.SOUTH);
+        JOptionPane.showMessageDialog(null, panel, "Winter Screen", JOptionPane.PLAIN_MESSAGE);
+        
         int rand = random.nextInt(4);
         switch(rand){
             case 0 -> {
+                new Game_Logic.AePlayWave("blizzard.wav").start();
                 System.out.println("Blizzard! Tower walls are damaged. Wall HP -50");
                 System.out.print("Wall HP " + Wall.wallHP + " -> ");
                 Wall.wallHP -= 50;
