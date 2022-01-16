@@ -48,57 +48,58 @@ public class Game_Logic {
         panel.add(text, BorderLayout.SOUTH);
         JOptionPane.showMessageDialog(null, panel, "Title Screen", JOptionPane.PLAIN_MESSAGE);
         
-        System.out.println("1. New game\n2. Load previous save");
-        System.out.println("-".repeat(40));
         //catch InputMismatchException - not Int
         boolean bError = true;
         int com = 0;
         int hardcom = 0;
         do{
             do{
-                System.out.print("Please enter your command: ");
-                try{
-                    com = sc.nextInt();
-                    bError = false;
+                do{
+                    System.out.println("1. New game\n2. Load previous save");
+                    System.out.println("-".repeat(40));
+                    System.out.print("Please enter your command: ");
+                    try{
+                        com = sc.nextInt();
+                        bError = false;
 
-                    if(com<1 || com>2) {
-                        System.out.println("Option not available, please try again.");
-                        System.out.println("-".repeat(40));
-                    }
-
-                    switch(com){
-                        case 1 : 
+                        if(com<1 || com>2) {
+                            System.out.println("Option not available, please try again.");
                             System.out.println("-".repeat(40));
+                        }
+
+                        switch(com){
+                            case 1 -> { 
+                                System.out.println("-".repeat(40));
                                 System.out.println("1. Normal\n2. Hard");
                                 System.out.println("-".repeat(40));
-                                do{
-                                    System.out.print("Plese select the difficulty: ");
-                                    hardcom= sc.nextInt();
-                                    if(hardcom<1 || hardcom>2)
-                                    {
-                                        System.out.println("Option not available, please try again.");
-                                        System.out.println("-".repeat(40));
+
+                                System.out.print("Plese select the difficulty: ");
+                                hardcom= sc.nextInt();
+                                if(hardcom<1 || hardcom>2){
+                                    System.out.println("Option not available, please try again.");
+                                    System.out.println("-".repeat(40));
+                                }
+
+                                switch(hardcom){
+                                    case 1 -> fight();
+                                    case 2 -> {
+                                        isHardMode=true;
+                                        Dragon.AP=8;
+                                        Dragon.CritRate=24;
+                                        Dragon.dragonHP=130;
+                                        fight();
                                     }
-                                    switch(hardcom){
-                                        case 1 -> fight();
-                                        case 2 -> {
-                                            isHardMode=true;
-                                            Dragon.AP=8;
-                                            Dragon.CritRate=24;
-                                            Dragon.dragonHP=130;
-                                            fight();
-                                        }
-                                    }
-                                }while(hardcom<1 || hardcom>2);
-                                break;
-                        case 2 : Save.load();
+                                }
+                            }
+                            case 2 -> Save.load();
+                        }
+                    }catch(InputMismatchException e){
+                        System.out.println("Error! Please enter an Integer.");
+                        System.out.println("-".repeat(40)); 
+                        sc.next();
                     }
-                }catch(InputMismatchException e){
-                    System.out.println("Error! Please enter an Integer.");
-                    System.out.println("-".repeat(40)); 
-                    sc.next();
-                }
-            }while(bError);
+                }while(bError);
+            }while(hardcom<1 || hardcom>2);
         }while(com<1 || com>2);
         
     }
