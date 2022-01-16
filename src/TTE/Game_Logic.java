@@ -275,6 +275,18 @@ public class Game_Logic {
                 if(chance(Tower.CritRate)){
                     //critical attack
                     new AePlayWave("sword.wav").start();
+                    ImageIcon TitlePNG = new ImageIcon("swordslash.gif");
+                    JLabel icon = new JLabel(TitlePNG);
+                    JLabel text = new JLabel("Tower attacked dragon with critical attack!");
+                    text.setFont(Determined20);
+                    text.setForeground(Color.WHITE);
+                    JPanel panel = new JPanel();
+                    panel.setBackground(Color.BLACK);
+                    panel.setLayout(new BorderLayout());
+                    panel.add(icon, BorderLayout.CENTER);
+                    panel.add(text, BorderLayout.SOUTH);
+                    JOptionPane.showMessageDialog(null, panel, "Title Screen", JOptionPane.PLAIN_MESSAGE);
+
                     System.out.println("Tower attacked dragon with critical attack!");
                     dmg += (int)dmg/2;
                 }
