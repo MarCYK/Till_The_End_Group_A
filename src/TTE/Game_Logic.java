@@ -36,6 +36,7 @@ public class Game_Logic {
     }
     
     public static void game(){
+        victory();
         //create Popup title
         ImageIcon TitlePNG = new ImageIcon("Front_page.png");
         JLabel icon = new JLabel(TitlePNG);
@@ -146,7 +147,7 @@ public class Game_Logic {
     public static void fight(){
         new AePlayWave("DragonRoar.wav").start();
         //create Fight Popup
-        ImageIcon DragonPNG = new ImageIcon("DragonAttack2.gif");
+        ImageIcon DragonPNG = new ImageIcon("Dragonchibi.png");
         JLabel icon = new JLabel(DragonPNG);
         JLabel text = new JLabel("<html>" + "A dragon performs a sudden attack to your city!"
                 + "<br> Dragon's Level: " + Dragon.dragonLvl
@@ -221,6 +222,18 @@ public class Game_Logic {
             if(chance(Dragon.CritRate)){
                 //critical attack
                 new AePlayWave("DragonAttack.wav").start();
+                ImageIcon TitlePNG = new ImageIcon("DragonAttack2.gif");
+                JLabel icon = new JLabel(TitlePNG);
+                JLabel text = new JLabel(" ".repeat(30)+ "Dragon attacked our wall with critical attack!");
+                text.setFont(Determined20);
+                text.setForeground(Color.WHITE);
+                JPanel panel = new JPanel();
+                panel.setBackground(Color.BLACK);
+                panel.setLayout(new BorderLayout());
+                panel.add(icon, BorderLayout.CENTER);
+                panel.add(text, BorderLayout.SOUTH);
+                JOptionPane.showMessageDialog(null, panel, "Title Screen", JOptionPane.PLAIN_MESSAGE);
+                
                 System.out.println("Dragon attacked our wall with critical attack!");
                 dmg += (int)dmg/2;
             }
@@ -300,8 +313,9 @@ public class Game_Logic {
         JLabel icon = new JLabel(TitlePNG);
         JLabel text = new JLabel(" ".repeat(30)+ "You failed to protect your city!");
         text.setFont(Determined20);
+        text.setForeground(Color.WHITE);
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(219, 233, 240));
+        panel.setBackground(Color.BLACK);
         panel.setLayout(new BorderLayout());
         panel.add(icon, BorderLayout.CENTER);
         panel.add(text, BorderLayout.SOUTH);
@@ -309,7 +323,7 @@ public class Game_Logic {
         
         //System.out.println("You failed to protect your city!");
         
-        System.exit(0);
+        credit();
     }
     
     //Won the game
@@ -320,8 +334,28 @@ public class Game_Logic {
         JLabel icon = new JLabel(TitlePNG);
         JLabel text = new JLabel(" ".repeat(20)+ "You killed the dragon! You protected your city!");
         text.setFont(Determined20);
+        text.setForeground(Color.WHITE);
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(219, 233, 240));
+        panel.setBackground(Color.BLACK);
+        panel.setLayout(new BorderLayout());
+        panel.add(icon, BorderLayout.CENTER);
+        panel.add(text, BorderLayout.SOUTH);
+        JOptionPane.showMessageDialog(null, panel, "Defeat Screen", JOptionPane.PLAIN_MESSAGE);
+        
+        //System.out.println("You killed the dragon! You protected your city!");
+        
+        credit();
+    }
+    
+    public static void credit()
+    {
+        ImageIcon TitlePNG = new ImageIcon("Victory.gif");
+        JLabel icon = new JLabel(TitlePNG);
+        JLabel text = new JLabel("<html>Credits:<br>Marvin<br>Luqman<br>Derrick<br>Alvin<br>Ann</html>");
+        text.setFont(Determined24);
+        text.setForeground(Color.WHITE);
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.BLACK);
         panel.setLayout(new BorderLayout());
         panel.add(icon, BorderLayout.CENTER);
         panel.add(text, BorderLayout.SOUTH);
