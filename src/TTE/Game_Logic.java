@@ -14,6 +14,7 @@ public class Game_Logic {
     static Save save = new Save();
     static Font Determined20;
     static Font Determined24;
+    static Font Determined30;
     static boolean isHardMode=false;
     
     public Game_Logic(){
@@ -33,10 +34,17 @@ public class Game_Logic {
         }catch(IOException | FontFormatException e){
             
         }
+        
+        try{
+            Determined30 = Font.createFont(Font.TRUETYPE_FONT, new File("DeterminationSansWebRegular-369X.ttf")).deriveFont(30f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Determined24);
+        }catch(IOException | FontFormatException e){
+            
+        }
     }
     
     public static void game(){
-        victory();
         //create Popup title
         ImageIcon TitlePNG = new ImageIcon("Front_page.png");
         JLabel icon = new JLabel(TitlePNG);
@@ -311,8 +319,8 @@ public class Game_Logic {
         new AePlayWave("Defeat.wav").start();
         ImageIcon TitlePNG = new ImageIcon("Defeated.gif");
         JLabel icon = new JLabel(TitlePNG);
-        JLabel text = new JLabel(" ".repeat(30)+ "You failed to protect your city!");
-        text.setFont(Determined20);
+        JLabel text = new JLabel(" ".repeat(20)+ "You failed to protect your city!");
+        text.setFont(Determined24);
         text.setForeground(Color.WHITE);
         JPanel panel = new JPanel();
         panel.setBackground(Color.BLACK);
@@ -332,8 +340,8 @@ public class Game_Logic {
         new AePlayWave("WON1.wav").start();
         ImageIcon TitlePNG = new ImageIcon("Victory.png");
         JLabel icon = new JLabel(TitlePNG);
-        JLabel text = new JLabel(" ".repeat(20)+ "You killed the dragon! You protected your city!");
-        text.setFont(Determined20);
+        JLabel text = new JLabel(" ".repeat(10)+ "You killed the dragon! You protected your city!");
+        text.setFont(Determined24);
         text.setForeground(Color.WHITE);
         JPanel panel = new JPanel();
         panel.setBackground(Color.BLACK);
@@ -351,11 +359,10 @@ public class Game_Logic {
     {
         ImageIcon TitlePNG = new ImageIcon("Victory.gif");
         JLabel icon = new JLabel(TitlePNG);
-        JLabel text = new JLabel("<html>Credits:<br>Marvin<br>Luqman<br>Derrick<br>Alvin<br>Ann</html>");
-        text.setFont(Determined24);
-        text.setForeground(Color.WHITE);
+        JLabel text = new JLabel("<html><center>CREDITS<br>DERRICK MARVIN LUQMAN ALVIN ANN</center></html>");
+        text.setFont(Determined30);
         JPanel panel = new JPanel();
-        panel.setBackground(Color.BLACK);
+        panel.setBackground(Color.WHITE);
         panel.setLayout(new BorderLayout());
         panel.add(icon, BorderLayout.CENTER);
         panel.add(text, BorderLayout.SOUTH);
