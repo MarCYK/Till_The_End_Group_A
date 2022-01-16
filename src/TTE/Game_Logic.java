@@ -301,6 +301,7 @@ public class Game_Logic {
     //Won the game
     public static void victory()
     {
+        new AePlayWave("victory.wav").start();
         System.out.println("You killed the dragon! You protected your city!");
         System.exit(0);
     }
