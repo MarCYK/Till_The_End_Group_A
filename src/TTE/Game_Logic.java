@@ -225,6 +225,7 @@ public class Game_Logic {
                 if(chance(Tower.CritRate)){
                     //critical attack
                     System.out.println("Tower attacked dragon with critical attack!");
+                    new AePlayWave("sword.wav").start();
                     dmg += (int)dmg/2;
                 }
                 else{
