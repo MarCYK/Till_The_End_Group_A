@@ -19,69 +19,71 @@ public class Wall {
         System.out.println("3. Back to menu");
         System.out.println("-".repeat(40));
         boolean bError = true;
-        int com;
+        int com = 0;
         do{
-            System.out.print("Please enter your command: ");
-            try{
-                com = sc.nextInt();
-                bError = false;
-                    
-                while (com<1 || com>3) {
-                    System.out.println("Option not available, please try again. ");
-                    System.out.println("-".repeat(40));
-                    System.out.print("Please enter your command: ");
+            do{
+                System.out.print("Please enter your command: ");
+                try{
                     com = sc.nextInt();
-                }
+                    bError = false;
 
-                System.out.println("-".repeat(40));
-                switch(com){
-                    case 1 -> {
-                        if(Gold.goldCheck(100)){
-                            System.out.print("Our walls have been strengthened! Wall HP " + Wall.wallHP + " -> ");
-                            Wall.wallHP += 75;
-                            System.out.println(Wall.wallHP);
-                            System.out.printf("Gold : %d -> ", Gold.gold);
-                            Gold.gold -= 100;
-                            System.out.printf("%d\n", Gold.gold);
-                        }
-                        else{
-                            System.out.println("Our treasury is empty. Upgrade failed.");
-                        }
+                    if (com<1 || com>3) {
+                        System.out.println("Option not available, please try again. ");
                         System.out.println("-".repeat(40));
-                        System.out.print("Press ENTER to continue.");
-                        enterScanner.nextLine();
-                        wallUpgrade();
+                        System.out.print("Please enter your command: ");
+                        com = sc.nextInt();
                     }
-                    case 2 -> {
-                        if(Gold.goldCheck(100)){
-                            if(wallBlock < 50){
-                                System.out.print("Our walls have been improved! Block chance " + Wall.wallBlock + " -> ");
-                                Wall.wallBlock += 5;
-                                System.out.println(Wall.wallBlock);
+
+                    System.out.println("-".repeat(40));
+                    switch(com){
+                        case 1 -> {
+                            if(Gold.goldCheck(100)){
+                                System.out.print("Our walls have been strengthened! Wall HP " + Wall.wallHP + " -> ");
+                                Wall.wallHP += 75;
+                                System.out.println(Wall.wallHP);
                                 System.out.printf("Gold : %d -> ", Gold.gold);
                                 Gold.gold -= 100;
                                 System.out.printf("%d\n", Gold.gold);
                             }
                             else{
-                                System.out.println("Our walls can no longer be improved.");
+                                System.out.println("Our treasury is empty. Upgrade failed.");
                             }
+                            System.out.println("-".repeat(40));
+                            System.out.print("Press ENTER to continue.");
+                            enterScanner.nextLine();
+                            wallUpgrade();
                         }
-                        else{
-                            System.out.println("Our treasury is empty. Upgrade failed.");
+                        case 2 -> {
+                            if(Gold.goldCheck(100)){
+                                if(wallBlock < 50){
+                                    System.out.print("Our walls have been improved! Block chance " + Wall.wallBlock + " -> ");
+                                    Wall.wallBlock += 5;
+                                    System.out.println(Wall.wallBlock);
+                                    System.out.printf("Gold : %d -> ", Gold.gold);
+                                    Gold.gold -= 100;
+                                    System.out.printf("%d\n", Gold.gold);
+                                }
+                                else{
+                                    System.out.println("Our walls can no longer be improved.");
+                                }
+                            }
+                            else{
+                                System.out.println("Our treasury is empty. Upgrade failed.");
+                            }
+                            System.out.println("-".repeat(40));
+                            System.out.print("Press ENTER to continue.");                
+                            enterScanner.nextLine();
+                            wallUpgrade();
                         }
-                        System.out.println("-".repeat(40));
-                        System.out.print("Press ENTER to continue.");                
-                        enterScanner.nextLine();
-                        wallUpgrade();
+                        case 3 -> Game_Logic.waitforCommand();
                     }
-                    case 3 -> Game_Logic.waitforCommand();
+                }catch(InputMismatchException e){
+                    System.out.println("Error! Please enter an Integer.");
+                    System.out.println("-".repeat(40));
+                    sc.next();
                 }
-            }catch(InputMismatchException e){
-                System.out.println("Error! Please enter an Integer.");
-                System.out.println("-".repeat(40));
-                sc.next();
-            }
-        }while(bError);
+            }while(bError);
+        }while (com<1 || com>3);
         
     }
 }
