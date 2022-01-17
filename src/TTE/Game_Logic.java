@@ -44,10 +44,12 @@ public class Game_Logic {
         }
     }
     
+    //sound 
     static Sound sound = new Sound("victory.wav");
     static Sound citizen = new Sound("Market_Day.wav");
     static Sound towerSound = new Sound("alexander-nakarada-chase_1.wav");
     static Sound wallSound = new Sound("Kings_Feast.wav");
+    static Sound fight = new Sound("alexander-nakarada-the-great-battle.wav");
     
     public static void game(){
         sound.play();
@@ -213,7 +215,6 @@ public class Game_Logic {
     public static void fight(){
         sound.stop();
         
-        Sound fight = new Sound("alexander-nakarada-the-great-battle.wav");
         fight.play();
         fight.loop();
         
@@ -392,7 +393,8 @@ public class Game_Logic {
     
     //Lost the game
     public static void defeat()
-    {
+    {   
+        fight.stop();
         new AePlayWave("Defeat.wav").start();
         ImageIcon TitlePNG = new ImageIcon("Defeated.gif");
         JLabel icon = new JLabel(TitlePNG);
@@ -413,7 +415,8 @@ public class Game_Logic {
     
     //Won the game
     public static void victory()
-    {
+    {   
+        fight.stop();
         new AePlayWave("WON1.wav").start();
         ImageIcon TitlePNG = new ImageIcon("Victory.png");
         JLabel icon = new JLabel(TitlePNG);
