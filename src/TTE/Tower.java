@@ -28,14 +28,6 @@ public class Tower extends SameBehavior {
     
     @Override
     public void Upgrade(){
-        ImageIcon TitlePNG = new ImageIcon("Tower.png");
-        JLabel icon = new JLabel(TitlePNG);
-        JPanel panel = new JPanel();
-        panel.setBackground(new Color(219, 233, 240));
-        panel.setLayout(new BorderLayout());
-        panel.add(icon, BorderLayout.CENTER);
-        JOptionPane.showMessageDialog(null, panel, "Tower", JOptionPane.PLAIN_MESSAGE);
-        
         System.out.println("-".repeat(40));
         System.out.printf("Tower's AttackPoint: %.0f\n", AP);
         System.out.printf("Tower's CriticalRate: %.0f%%\n", CritRate);

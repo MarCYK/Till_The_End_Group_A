@@ -20,15 +20,7 @@ public class Citizen {
     static double diligent = 10;
     static double fearless = 10;
      
-    public static void citizenUpgrade(){
-        ImageIcon TitlePNG = new ImageIcon("Citizen.png");
-        JLabel icon = new JLabel(TitlePNG);
-        JPanel panel = new JPanel();
-        panel.setBackground(new Color(219, 233, 240));
-        panel.setLayout(new BorderLayout());
-        panel.add(icon, BorderLayout.CENTER);
-        JOptionPane.showMessageDialog(null, panel, "Tower", JOptionPane.PLAIN_MESSAGE);
-        
+    public static void citizenUpgrade(){      
         System.out.println("-".repeat(40));
         System.out.println("Citizen's Emotional (Decrease Tower's AttackPoint by 1): " + emotional);
         System.out.println("Citizen's Nervous (Decrease Tower Accuracy Percentage by 5%): " + nervous);
@@ -59,7 +51,7 @@ public class Citizen {
                         System.out.print("Please enter your command: ");
                         cmd = sc.nextInt();            
                     }
-
+                    
                     System.out.println("-".repeat(40));
                     switch(cmd){
                         case 1:{
@@ -176,7 +168,7 @@ public class Citizen {
                             citizenUpgrade();
 
                         }
-                        case 7: Game_Logic.waitforCommand();
+                        case 7: Game_Logic.waitforCommand();                              
                     }
                 }catch(InputMismatchException e){
                     System.out.println("Error! Please enter an Integer.");

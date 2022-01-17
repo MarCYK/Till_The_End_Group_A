@@ -17,14 +17,6 @@ public class Wall {
     
     //Wall Upgrade
     public static void wallUpgrade(){
-        ImageIcon TitlePNG = new ImageIcon("Wall.png");
-        JLabel icon = new JLabel(TitlePNG);
-        JPanel panel = new JPanel();
-        panel.setBackground(new Color(219, 233, 240));
-        panel.setLayout(new BorderLayout());
-        panel.add(icon, BorderLayout.CENTER);
-        JOptionPane.showMessageDialog(null, panel, "Tower", JOptionPane.PLAIN_MESSAGE);
-        
         System.out.println("-".repeat(40));
         System.out.printf("Wall's HealthPoint: %.0f\n", wallHP);
         System.out.printf("Wall's Block: %.0f%%\n\n", wallBlock);
@@ -47,7 +39,7 @@ public class Wall {
                         System.out.print("Please enter your command: ");
                         com = sc.nextInt();
                     }
-
+                    
                     System.out.println("-".repeat(40));
                     switch(com){
                         case 1 -> {

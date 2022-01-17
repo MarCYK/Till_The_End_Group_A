@@ -43,9 +43,15 @@ public class Game_Logic {
             
         }
     }
+    
     static Sound sound = new Sound("victory.wav");
+    static Sound citizen = new Sound("Market_Day.wav");
+    static Sound towerSound = new Sound("alexander-nakarada-chase_1.wav");
+    static Sound wallSound = new Sound("Kings_Feast.wav");
+    
     public static void game(){
         sound.play();
+        sound.loop();
         ImageIcon TitlePNG = new ImageIcon("intro.gif");
         JLabel icon = new JLabel(TitlePNG);
         JPanel panel = new JPanel();
@@ -120,6 +126,14 @@ public class Game_Logic {
     //main interface
     public static void waitforCommand(){
         sound.stop();
+        citizen.stop();
+        towerSound.stop();
+        wallSound.stop();
+        
+        Sound menu = new Sound("Rejoicing.wav");
+        menu.play();
+        menu.loop();
+        
         System.out.print("1. Tower\n2. Wall\n3. Citizen\n4. I am all ready!\n5. Save your progress\n");
         System.out.println("-".repeat(40));
         boolean bError = true;
@@ -136,11 +150,50 @@ public class Game_Logic {
                         System.out.println("-".repeat(40));
                         com = sc.nextInt();            
                     }
+                    menu.stop();
 
                     switch(com){
-                        case 1 -> tower.Upgrade();
-                        case 2 -> Wall.wallUpgrade();
-                        case 3 -> Citizen.citizenUpgrade();
+                        case 1 -> {
+                            towerSound.play();
+                            towerSound.loop();
+                            
+                            ImageIcon TitlePNG = new ImageIcon("Tower.png");
+                            JLabel icon = new JLabel(TitlePNG);
+                            JPanel panel = new JPanel();
+                            panel.setBackground(new Color(219, 233, 240));
+                            panel.setLayout(new BorderLayout());
+                            panel.add(icon, BorderLayout.CENTER);
+                            JOptionPane.showMessageDialog(null, panel, "Tower", JOptionPane.PLAIN_MESSAGE);
+        
+                            tower.Upgrade();
+                        }
+                        case 2 -> {
+                            wallSound.play();
+                            wallSound.loop();
+                            
+                            ImageIcon TitlePNG = new ImageIcon("Wall.png");
+                            JLabel icon = new JLabel(TitlePNG);
+                            JPanel panel = new JPanel();
+                            panel.setBackground(new Color(219, 233, 240));
+                            panel.setLayout(new BorderLayout());
+                            panel.add(icon, BorderLayout.CENTER);
+                            JOptionPane.showMessageDialog(null, panel, "Tower", JOptionPane.PLAIN_MESSAGE);
+        
+                            Wall.wallUpgrade();
+                        }
+                        case 3 -> {
+                            citizen.play();
+                            citizen.loop();
+
+                            ImageIcon TitlePNG = new ImageIcon("Citizen.png");
+                            JLabel icon = new JLabel(TitlePNG);
+                            JPanel panel = new JPanel();
+                            panel.setBackground(new Color(219, 233, 240));
+                            panel.setLayout(new BorderLayout());
+                            panel.add(icon, BorderLayout.CENTER);
+                            JOptionPane.showMessageDialog(null, panel, "Tower", JOptionPane.PLAIN_MESSAGE);
+                            Citizen.citizenUpgrade();
+                        }
                         case 4 -> {
                             System.out.println("-".repeat(40));
                             fight();
@@ -159,6 +212,11 @@ public class Game_Logic {
     //Transition to attack sequence
     public static void fight(){
         sound.stop();
+        
+        Sound fight = new Sound("alexander-nakarada-the-great-battle.wav");
+        fight.play();
+        fight.loop();
+        
         new AePlayWave("DragonRoar.wav").start();
         //create Fight Popup
         ImageIcon DragonPNG = new ImageIcon("Dragonchibi.png");
@@ -198,6 +256,7 @@ public class Game_Logic {
             System.out.print("Press ENTER to continue.");
             enterScanner.nextLine();            
         }
+        fight.stop();
         new AePlayWave("TEUTON.wav").start();
         dragon.Upgrade(); // line 120
         // Complete one dragon fight message
