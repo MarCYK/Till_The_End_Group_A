@@ -63,53 +63,50 @@ public class Game_Logic {
         int hardcom = 0;
         do{
             do{
-                do{
-                    System.out.println("1. New game\n2. Load previous save");
-                    System.out.println("-".repeat(40));
-                    System.out.print("Please enter your command: ");
-                    try{
-                        com = sc.nextInt();
-                        bError = false;
+                System.out.println("1. New game\n2. Load previous save");
+                System.out.println("-".repeat(40));
+                System.out.print("Please enter your command: ");
+                try{
+                    com = sc.nextInt();
+                    bError = false;
 
-                        if(com<1 || com>2) {
-                            System.out.println("Option not available, please try again.");
+                    if(com<1 || com>2) {
+                        System.out.println("Option not available, please try again.");
+                        System.out.println("-".repeat(40));
+                    }
+
+                    switch(com){
+                        case 1 -> { 
                             System.out.println("-".repeat(40));
-                        }
+                            System.out.println("1. Normal\n2. Hard");
+                            System.out.println("-".repeat(40));
 
-                        switch(com){
-                            case 1 -> { 
+                            System.out.print("Plese select the difficulty: ");
+                            hardcom= sc.nextInt();
+                            if(hardcom<1 || hardcom>2){
+                                System.out.println("Option not available, please try again.");
                                 System.out.println("-".repeat(40));
-                                System.out.println("1. Normal\n2. Hard");
-                                System.out.println("-".repeat(40));
-
-                                System.out.print("Plese select the difficulty: ");
-                                hardcom= sc.nextInt();
-                                if(hardcom<1 || hardcom>2){
-                                    System.out.println("Option not available, please try again.");
-                                    System.out.println("-".repeat(40));
-                                }
-
-                                switch(hardcom){
-                                    case 1 -> fight();
-                                    case 2 -> {
-                                        isHardMode=true;
-                                        Dragon.AP=8;
-                                        Dragon.CritRate=24;
-                                        Dragon.dragonHP=130;
-                                        fight();
-                                    }
+                            }
+                            switch(hardcom){
+                                case 1 -> fight();
+                                case 2 -> {
+                                    isHardMode=true;
+                                    Dragon.AP=8;
+                                    Dragon.CritRate=24;
+                                    Dragon.dragonHP=130;
+                                    fight();
                                 }
                             }
-                            case 2 -> Save.load();
                         }
-                    }catch(InputMismatchException e){
-                        System.out.println("Error! Please enter an Integer.");
-                        System.out.println("-".repeat(40)); 
-                        sc.next();
+                        case 2 -> Save.load();
                     }
-                }while(bError);
-            }while(hardcom<1 || hardcom>2);
-        }while(com<1 || com>2);
+                }catch(InputMismatchException e){
+                    System.out.println("Error! Please enter an Integer.");
+                    System.out.println("-".repeat(40)); 
+                    sc.next();
+                }
+            }while(bError);
+        }while(com<1 || com>2 && hardcom<1 || hardcom>2);
         
     }
     
