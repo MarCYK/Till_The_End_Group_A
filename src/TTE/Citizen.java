@@ -1,6 +1,12 @@
 package TTE;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class Citizen {
     static Scanner sc = new Scanner(System.in);
@@ -15,6 +21,14 @@ public class Citizen {
     static double fearless = 10;
      
     public static void citizenUpgrade(){
+        ImageIcon TitlePNG = new ImageIcon("Citizen.png");
+        JLabel icon = new JLabel(TitlePNG);
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(219, 233, 240));
+        panel.setLayout(new BorderLayout());
+        panel.add(icon, BorderLayout.CENTER);
+        JOptionPane.showMessageDialog(null, panel, "Tower", JOptionPane.PLAIN_MESSAGE);
+        
         System.out.println("-".repeat(40));
         System.out.println("Citizen's Emotional (Decrease Tower's AttackPoint by 1): " + emotional);
         System.out.println("Citizen's Nervous (Decrease Tower Accuracy Percentage by 5%): " + nervous);

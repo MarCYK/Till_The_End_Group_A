@@ -43,20 +43,27 @@ public class Game_Logic {
             
         }
     }
-    
+    static Sound sound = new Sound("victory.wav");
     public static void game(){
-        //create Popup title
-        ImageIcon TitlePNG = new ImageIcon("Front_page.png");
+        sound.play();
+        ImageIcon TitlePNG = new ImageIcon("intro.gif");
         JLabel icon = new JLabel(TitlePNG);
-        JLabel text = new JLabel(" ".repeat(30)+ "Welcome to Till The End - A Tower Defense Game!");
-        text.setFont(Determined20);
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(219, 233, 240));
         panel.setLayout(new BorderLayout());
         panel.add(icon, BorderLayout.CENTER);
-        panel.add(text, BorderLayout.SOUTH);
-        JOptionPane.showMessageDialog(null, panel, "Title Screen", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, panel, "Intro", JOptionPane.PLAIN_MESSAGE);
         
+        //create Popup title
+        ImageIcon TitlePNG2 = new ImageIcon("Front_page.png");
+        JLabel icon2 = new JLabel(TitlePNG2);
+        JLabel text2 = new JLabel(" ".repeat(30)+ "Welcome to Till The End - A Tower Defense Game!");
+        text2.setFont(Determined20);
+        JPanel panel2 = new JPanel();
+        panel2.setBackground(new Color(219, 233, 240));
+        panel2.setLayout(new BorderLayout());
+        panel2.add(icon2, BorderLayout.CENTER);
+        panel2.add(text2, BorderLayout.SOUTH);
+        JOptionPane.showMessageDialog(null, panel2, "Title Screen", JOptionPane.PLAIN_MESSAGE);
         //catch InputMismatchException - not Int
         boolean bError = true;
         int com = 0;
@@ -112,6 +119,7 @@ public class Game_Logic {
     
     //main interface
     public static void waitforCommand(){
+        sound.stop();
         System.out.print("1. Tower\n2. Wall\n3. Citizen\n4. I am all ready!\n5. Save your progress\n");
         System.out.println("-".repeat(40));
         boolean bError = true;
@@ -150,6 +158,7 @@ public class Game_Logic {
     
     //Transition to attack sequence
     public static void fight(){
+        sound.stop();
         new AePlayWave("DragonRoar.wav").start();
         //create Fight Popup
         ImageIcon DragonPNG = new ImageIcon("Dragonchibi.png");

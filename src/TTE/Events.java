@@ -18,16 +18,35 @@ public class Events {
     
     public void Spring(){
         seasonName = "Spring";
+        
+        ImageIcon TitlePNG = new ImageIcon("Spring.png");
+        JLabel icon = new JLabel(TitlePNG);
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(219, 233, 240));
+        panel.setLayout(new BorderLayout());
+        panel.add(icon, BorderLayout.CENTER);
+        JOptionPane.showMessageDialog(null, panel, "Spring Screen", JOptionPane.PLAIN_MESSAGE);
+        
         //Generate 0,1,2
         int rand = random.nextInt(3);
         switch(rand){
             //reinforcement; towerAP +1
-            case 0 -> {
-                new Game_Logic.AePlayWave("Rome Total War - Reinforcements Sound.wav").start();
+            case 0 -> {         
                 System.out.println("Reinforcements have arrived! Tower's AttackPoint +1");
                 System.out.print("Tower AP " + Tower.AP + " -> ");
                 Tower.AP++;
                 System.out.println(Tower.AP);
+                
+                Sound sound = new Sound("Rome Total War - Reinforcements Sound.wav");
+                sound.play();
+                ImageIcon TitlePNG2 = new ImageIcon("reinforcements.jpg");
+                JLabel icon2 = new JLabel(TitlePNG2);
+                JPanel panel2 = new JPanel();
+                panel2.setBackground(Color.BLACK);
+                panel2.setLayout(new BorderLayout());
+                panel2.add(icon2, BorderLayout.CENTER);
+                JOptionPane.showMessageDialog(null, panel2, "reinforcements", JOptionPane.PLAIN_MESSAGE);
+                sound.stop();
             }
             //Visitors; gold +100
             case 1 -> {
@@ -55,6 +74,15 @@ public class Events {
     
     public void Summer(){
         seasonName = "Summer";
+        
+        ImageIcon TitlePNG = new ImageIcon("Summer.png");
+        JLabel icon = new JLabel(TitlePNG);
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(219, 233, 240));
+        panel.setLayout(new BorderLayout());
+        panel.add(icon, BorderLayout.CENTER);
+        JOptionPane.showMessageDialog(null, panel, "Summer Screen", JOptionPane.PLAIN_MESSAGE);
+        
         int rand = random.nextInt(3);
         switch(rand){
             case 0 -> {
@@ -94,6 +122,15 @@ public class Events {
     
     public void Autumn(){
         seasonName = "Autumn";
+        
+        ImageIcon TitlePNG = new ImageIcon("Autumn.png");
+        JLabel icon = new JLabel(TitlePNG);
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(219, 233, 240));
+        panel.setLayout(new BorderLayout());
+        panel.add(icon, BorderLayout.CENTER);
+        JOptionPane.showMessageDialog(null, panel, "Autumn Screen", JOptionPane.PLAIN_MESSAGE);
+        
         int rand = random.nextInt(3);
         switch(rand){
             case 0 -> {
@@ -126,13 +163,10 @@ public class Events {
         
         ImageIcon TitlePNG = new ImageIcon("winter.png");
         JLabel icon = new JLabel(TitlePNG);
-        JLabel text = new JLabel("<html>" + "Year: " + year + "<br>Season: "+ seasonName +"</html>");
-        text.setFont(Determined24);
         JPanel panel = new JPanel();
         panel.setBackground(new Color(219, 233, 240));
         panel.setLayout(new BorderLayout());
         panel.add(icon, BorderLayout.CENTER);
-        panel.add(text, BorderLayout.SOUTH);
         JOptionPane.showMessageDialog(null, panel, "Winter Screen", JOptionPane.PLAIN_MESSAGE);
         
         int rand = random.nextInt(4);
