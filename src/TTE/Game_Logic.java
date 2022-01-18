@@ -96,7 +96,7 @@ public class Game_Logic {
                             System.out.println("1. Normal\n2. Hard");
                             System.out.println("-".repeat(40));
 
-                            System.out.print("Plese select the difficulty: ");
+                            System.out.print("Please select the difficulty: ");
                             hardcom= sc.nextInt();
                             if(hardcom<1 || hardcom>2){
                                 System.out.println("Option not available, please try again.");
