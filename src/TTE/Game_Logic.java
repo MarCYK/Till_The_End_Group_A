@@ -306,7 +306,7 @@ public class Game_Logic {
                 panel.setLayout(new BorderLayout());
                 panel.add(icon, BorderLayout.CENTER);
                 panel.add(text, BorderLayout.SOUTH);
-                JOptionPane.showMessageDialog(null, panel, "Title Screen", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, panel, "Dragon Crit", JOptionPane.PLAIN_MESSAGE);
                 
                 System.out.println("Dragon attacked our wall with critical attack!");
                 dmg += (int)dmg/2;
@@ -351,7 +351,7 @@ public class Game_Logic {
                     panel.setLayout(new BorderLayout());
                     panel.add(icon, BorderLayout.CENTER);
                     panel.add(text, BorderLayout.SOUTH);
-                    JOptionPane.showMessageDialog(null, panel, "Title Screen", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, panel, "Tower Crit", JOptionPane.PLAIN_MESSAGE);
 
                     System.out.println("Tower attacked dragon with critical attack!");
                     dmg += (int)dmg/2;
