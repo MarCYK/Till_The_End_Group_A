@@ -179,7 +179,7 @@ public class Game_Logic {
                             panel.setBackground(new Color(219, 233, 240));
                             panel.setLayout(new BorderLayout());
                             panel.add(icon, BorderLayout.CENTER);
-                            JOptionPane.showMessageDialog(null, panel, "Tower", JOptionPane.PLAIN_MESSAGE);
+                            JOptionPane.showMessageDialog(null, panel, "Wall", JOptionPane.PLAIN_MESSAGE);
         
                             Wall.wallUpgrade();
                         }
@@ -193,7 +193,7 @@ public class Game_Logic {
                             panel.setBackground(new Color(219, 233, 240));
                             panel.setLayout(new BorderLayout());
                             panel.add(icon, BorderLayout.CENTER);
-                            JOptionPane.showMessageDialog(null, panel, "Tower", JOptionPane.PLAIN_MESSAGE);
+                            JOptionPane.showMessageDialog(null, panel, "Citizen", JOptionPane.PLAIN_MESSAGE);
                             Citizen.citizenUpgrade();
                         }
                         case 4 -> {

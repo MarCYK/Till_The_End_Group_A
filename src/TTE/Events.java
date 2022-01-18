@@ -45,7 +45,7 @@ public class Events {
                 panel2.setBackground(Color.BLACK);
                 panel2.setLayout(new BorderLayout());
                 panel2.add(icon2, BorderLayout.CENTER);
-                JOptionPane.showMessageDialog(null, panel2, "reinforcements", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, panel2, "Reinforcements", JOptionPane.PLAIN_MESSAGE);
                 sound.stop();
             }
             //Visitors; gold +100
