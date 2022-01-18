@@ -361,7 +361,10 @@ public class Game_Logic {
                 }
                 Dragon.tempHP -= dmg;
                 System.out.printf("Dragon's HealthPoint minus %.0f\n", dmg);
-                System.out.printf("Current Dragon's HealthPoint: %.0f\n", Dragon.tempHP);     
+                System.out.printf("Current Dragon's HealthPoint: %.0f\n", Dragon.tempHP);
+                if(Dragon.tempHP <= 0){
+                    victory();
+                }
             }
             else{
                 System.out.println("Dragon dodged tower's attack!");
@@ -428,7 +431,7 @@ public class Game_Logic {
         panel.setLayout(new BorderLayout());
         panel.add(icon, BorderLayout.CENTER);
         panel.add(text, BorderLayout.SOUTH);
-        JOptionPane.showMessageDialog(null, panel, "Defeat Screen", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, panel, "Victory Screen", JOptionPane.PLAIN_MESSAGE);
         
         //System.out.println("You killed the dragon! You protected your city!");
         
@@ -446,7 +449,7 @@ public class Game_Logic {
         panel.setLayout(new BorderLayout());
         panel.add(icon, BorderLayout.CENTER);
         panel.add(text, BorderLayout.SOUTH);
-        JOptionPane.showMessageDialog(null, panel, "Defeat Screen", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, panel, "Credit Screen", JOptionPane.PLAIN_MESSAGE);
         
         //System.out.println("You killed the dragon! You protected your city!");
         
