@@ -96,7 +96,7 @@ public class Game_Logic {
                             System.out.println("1. Normal\n2. Hard");
                             System.out.println("-".repeat(40));
 
-                            System.out.print("Plese select the difficulty: ");
+                            System.out.print("Please select the difficulty: ");
                             hardcom= sc.nextInt();
                             if(hardcom<1 || hardcom>2){
                                 System.out.println("Option not available, please try again.");
@@ -179,7 +179,7 @@ public class Game_Logic {
                             panel.setBackground(new Color(219, 233, 240));
                             panel.setLayout(new BorderLayout());
                             panel.add(icon, BorderLayout.CENTER);
-                            JOptionPane.showMessageDialog(null, panel, "Tower", JOptionPane.PLAIN_MESSAGE);
+                            JOptionPane.showMessageDialog(null, panel, "Wall", JOptionPane.PLAIN_MESSAGE);
         
                             Wall.wallUpgrade();
                         }
@@ -193,7 +193,7 @@ public class Game_Logic {
                             panel.setBackground(new Color(219, 233, 240));
                             panel.setLayout(new BorderLayout());
                             panel.add(icon, BorderLayout.CENTER);
-                            JOptionPane.showMessageDialog(null, panel, "Tower", JOptionPane.PLAIN_MESSAGE);
+                            JOptionPane.showMessageDialog(null, panel, "Citizen", JOptionPane.PLAIN_MESSAGE);
                             Citizen.citizenUpgrade();
                         }
                         case 4 -> {
